@@ -10,7 +10,8 @@
   <meta property="og:image" content="assets/images/daniel.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Frank+Ruhl+Libre:wght@300;400;500&family=Rubik+Bubbles&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Frank+Ruhl+Libre:wght@300;400;500&family=Suez+One&family=Gveret+Levin&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Ccircle cx=%2732%27 cy=%2732%27 r=%2732%27 fill=%27%234a2c21%27/%3E%3Cpath d=%27M32 14l4 14 14 4-14 4-4 14-4-14-14-4 14-4z%27 fill=%27%23f3cdd4%27/%3E%3C/svg%3E">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -50,19 +51,23 @@
     <nav class="nav" aria-label="ניווט ראשי">
       <a class="nav-link" href="#course">הקורס</a>
       <a class="nav-link" href="#podcast">הפודקאסט</a>
-      <a class="nav-link" href="#free">חינם</a>
+      <a class="nav-link" href="#free">מדריכים</a>
       <span class="socials">
         <a data-link="instagram" href="#" aria-label="Instagram" target="_blank" rel="noopener"><svg><use href="#i-instagram"/></svg></a>
         <a data-link="tiktok" href="#" aria-label="TikTok" target="_blank" rel="noopener"><svg><use href="#i-tiktok"/></svg></a>
       </span>
     </nav>
+    <div class="path" aria-hidden="true">
+      <div class="path-track">
+        <div class="path-fill"></div>
+        <span class="ms" style="--at:0%"><i></i><em>יום 1 · מתחילה</em></span>
+        <span class="ms" style="--at:33.33%"><i></i><em>יום 10 · הרגלים</em></span>
+        <span class="ms" style="--at:66.66%"><i></i><em>יום 20 · שגרה</em></span>
+        <span class="ms ms-goal" style="--at:100%"><i></i><em>יום 30 · הגרסה הכי טובה שלך</em></span>
+      </div>
+      <span class="path-readout"><b id="path-day">01</b><small>/30</small><span id="path-stage">מתחילה</span></span>
+    </div>
   </header>
-
-  <!-- ===== Scroll journey: Day 01 → Day 30 ===== -->
-  <div class="journey" aria-hidden="true">
-    <div class="journey-track"><div class="journey-fill"></div><div class="journey-dot"></div></div>
-    <div class="journey-label"><small>DAY</small><b id="journey-day">01</b><small>/30</small></div>
-  </div>
 
   <main id="top">
 
@@ -83,17 +88,34 @@
       <div class="hero-text">
         <p class="kicker"><span class="rule"></span>Wellness · Growth · Self-love</p>
         <h1 class="title">
-          <span class="line"><span><b class="balloon" data-text="להפוך לגרסה">להפוך לגרסה</b></span></span>
-          <span class="line"><span><b class="balloon balloon-pink" data-text="הטובה ביותר">הטובה ביותר</b></span></span>
-          <span class="line"><span><b class="balloon" data-text="של עצמך.">של עצמך.</b></span></span>
+          <span class="line"><span>להפוך לגרסה</span></span>
+          <span class="line line-script"><span>הטובה ביותר</span></span>
+          <span class="line"><span>של עצמך.</span></span>
         </h1>
         <p class="lead">קורסים, מדריכים וכלים לגוף, לנפש ולשגרה. בעברית, מוקלטים, ובקצב שלך — כדי שהשינוי יקרה מבפנים ויישאר.</p>
         <div class="actions">
-          <a class="btn-primary" href="#course"><span>לקורס שלי</span><i aria-hidden="true">←</i></a>
-          <a class="link-arrow" href="#free">מדריכים בחינם <i aria-hidden="true">↓</i></a>
+          <a class="btn-primary" href="#course"><span>להצטרפות לאתגר</span><i aria-hidden="true">←</i></a>
+          <a class="link-arrow" href="#pillars">מה עובדים עליו? <i aria-hidden="true">↓</i></a>
         </div>
         <p class="signature">with love, Daniel</p>
       </div>
+    </section>
+
+    <!-- ===== Social proof ===== -->
+    <section class="proof" aria-label="על האתגר">
+      <div class="proof-item"><b>300+</b><span>בנות כבר באתגר</span></div>
+      <div class="proof-item"><b>30</b><span>ימים · נושא חדש כל יום</span></div>
+      <div class="proof-item"><b>4</b><span>שבועות · שינוי בשלבים</span></div>
+      <div class="proof-item"><b>∞</b><span>גישה מיידית · בלי מינוי</span></div>
+    </section>
+
+    <!-- ===== Paid course ===== -->
+    <section id="course" class="section section-paid">
+      <div class="section-head" data-reveal>
+        <p class="label">The Course</p>
+        <h2>הקורס</h2>
+      </div>
+      <div id="paid-list" class="courses"></div>
     </section>
 
     <!-- ===== Marquee ===== -->
@@ -104,25 +126,8 @@
       </div>
     </div>
 
-    <!-- ===== Podcast ===== -->
-    <section id="podcast" class="podcast">
-      <div class="podcast-inner">
-        <div class="wave" id="wave" aria-hidden="true"></div>
-        <div class="podcast-text" data-reveal>
-          <p class="label">The Podcast</p>
-          <h2>הפודקאסט <em>בדרך</em></h2>
-          <p>שיחות כנות על הרגלים, תזונה, כושר, ביטחון עצמי והדרך לגרסה הכי טובה של עצמך. לאוזניים — בהליכה, באימון או בבוקר עם קפה.</p>
-          <div class="listen">
-            <a class="listen-btn" data-podcast="spotify" href="#"><svg aria-hidden="true"><use href="#i-spotify"/></svg><span><small>האזינו ב־</small>Spotify</span></a>
-            <a class="listen-btn" data-podcast="applePodcasts" href="#"><svg aria-hidden="true"><use href="#i-apple-podcasts"/></svg><span><small>האזינו ב־</small>Apple Podcasts</span></a>
-          </div>
-          <p class="soon-note" id="podcast-note">עולה בקרוב — עקבי באינסטגרם כדי לשמוע ראשונה.</p>
-        </div>
-      </div>
-    </section>
-
     <!-- ===== Pillars ===== -->
-    <section class="pillars">
+    <section id="pillars" class="pillars">
       <div class="pillars-head" data-reveal>
         <p class="label">The Philosophy</p>
         <h2>גוף. נפש. שגרה.</h2>
@@ -150,13 +155,21 @@
       </div>
     </section>
 
-    <!-- ===== Paid course ===== -->
-    <section id="course" class="section section-paid">
-      <div class="section-head" data-reveal>
-        <p class="label">The Course</p>
-        <h2>הקורס</h2>
+    <!-- ===== Podcast ===== -->
+    <section id="podcast" class="podcast">
+      <div class="podcast-inner">
+        <div class="wave" id="wave" aria-hidden="true"></div>
+        <div class="podcast-text" data-reveal>
+          <p class="label">The Podcast</p>
+          <h2>הפודקאסט <em>בדרך</em></h2>
+          <p>שיחות כנות על הרגלים, תזונה, כושר, ביטחון עצמי והדרך לגרסה הכי טובה של עצמך. לאוזניים — בהליכה, באימון או בבוקר עם קפה.</p>
+          <div class="listen">
+            <a class="listen-btn" data-podcast="spotify" href="#"><svg aria-hidden="true"><use href="#i-spotify"/></svg><span><small>האזינו ב־</small>Spotify</span></a>
+            <a class="listen-btn" data-podcast="applePodcasts" href="#"><svg aria-hidden="true"><use href="#i-apple-podcasts"/></svg><span><small>האזינו ב־</small>Apple Podcasts</span></a>
+          </div>
+          <p class="soon-note" id="podcast-note">עולה בקרוב — עקבי באינסטגרם כדי לשמוע ראשונה.</p>
+        </div>
       </div>
-      <div id="paid-list" class="courses"></div>
     </section>
 
     <!-- ===== Free guides ===== -->
@@ -188,6 +201,7 @@
     </div>
     <nav class="footer-links" aria-label="ניווט תחתון">
       <a href="#course">הקורס</a>
+      <a href="#pillars">גוף. נפש. שגרה.</a>
       <a href="#podcast">הפודקאסט</a>
       <a href="#free">מדריכים בחינם</a>
     </nav>

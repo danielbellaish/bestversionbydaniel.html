@@ -100,23 +100,30 @@ if (podcastLive) {
   el.innerHTML = html;
 })();
 
-/* ---------- Scroll: journey Day 01→30, marquee ---------- */
+/* ---------- Scroll: progress path Day 01→30, marquee ---------- */
 
 (function scrollFx() {
-  const fill = document.querySelector(".journey-fill");
-  const dot = document.querySelector(".journey-dot");
-  const day = document.getElementById("journey-day");
+  const fill = document.querySelector(".path-fill");
+  const day = document.getElementById("path-day");
+  const stage = document.getElementById("path-stage");
+  const stones = [...document.querySelectorAll(".path .ms")];
+  const STAGES = ["מתחילה", "בונה הרגלים", "נכנסת לשגרה", "הגרסה הכי טובה שלך ✦"];
   const marquee = document.getElementById("marquee");
   let ticking = false;
 
   function update() {
     ticking = false;
     const max = document.documentElement.scrollHeight - innerHeight;
-    const y = scrollY;
-    const p = max > 0 ? Math.min(1, Math.max(0, y / max)) : 0;
-    fill.style.height = `${p * 100}%`;
-    dot.style.top = `${p * 100}%`;
-    day.textContent = String(1 + Math.round(p * 29)).padStart(2, "0");
+    const p = max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0;
+    const d = 1 + Math.round(p * 29);
+    fill.style.width = `${p * 100}%`;
+    day.textContent = String(d).padStart(2, "0");
+    const idx = d >= 30 ? 3 : d >= 20 ? 2 : d >= 10 ? 1 : 0;
+    stage.textContent = STAGES[idx];
+    stones.forEach((s, k) => {
+      s.classList.toggle("done", k <= idx);
+      s.classList.toggle("now", k === idx);
+    });
   }
 
   addEventListener("scroll", () => {
