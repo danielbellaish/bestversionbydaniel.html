@@ -19,6 +19,7 @@
   --f-display: "Frank Ruhl Libre", "David Libre", Georgia, serif;
   --f-latin: "Cormorant Garamond", Georgia, serif;
   --f-script: "Pinyon Script", "Cormorant Garamond", cursive;
+  --f-balloon: "Fredoka", "Varela Round", "Assistant", sans-serif;
   --f-body: "Assistant", "Heebo", system-ui, sans-serif;
 
   --holo: linear-gradient(100deg, var(--pink-deep) 0%, var(--gold) 25%, var(--olive) 45%, #d9a3b0 65%, var(--gold) 85%, var(--pink-deep) 100%);
@@ -136,13 +137,33 @@ svg use { pointer-events: none; }
 }
 .kicker .rule { width: 46px; height: 1px; background: var(--gold); transform-origin: right; animation: grow 1.2s var(--ease) .3s both; }
 
-.title { font-family: var(--f-display); font-weight: 300; font-size: clamp(2.7rem, 7.4vw, 5.6rem); line-height: 1.06; letter-spacing: -.01em; margin: 0; }
-.title .line { display: block; overflow: hidden; padding-bottom: .08em; }
+.title { font-family: var(--f-balloon); font-weight: 600; font-size: clamp(2.6rem, 5.8vw, 4.9rem); line-height: 1.08; letter-spacing: -.005em; margin: 0; }
+.title .line { display: block; padding: .04em 0 .12em; }
 .title .line > span { display: inline-block; animation: rise 1.2s var(--ease) both; }
 .title .line:nth-child(1) > span { animation-delay: .35s; }
 .title .line:nth-child(2) > span { animation-delay: .5s; }
 .title .line:nth-child(3) > span { animation-delay: .65s; }
-.title em { font-style: normal; color: var(--pink-deep); font-weight: 400; }
+/* balloon letters: puffy gradient fill, glossy highlight on top, soft depth below, gentle float */
+.balloon {
+  position: relative; display: inline-block; font-weight: 600; white-space: nowrap;
+  background: linear-gradient(180deg, #8a5a47 0%, var(--choc) 55%, var(--choc-deep) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 3px 0 rgba(58, 33, 25, .22)) drop-shadow(0 14px 18px rgba(74, 44, 33, .22));
+  animation: bob 5.5s ease-in-out infinite;
+}
+.balloon::after {
+  content: attr(data-text); position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .75) 0%, rgba(255, 255, 255, .25) 22%, rgba(255, 255, 255, 0) 38%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  transform: translate(-.015em, -.02em) scale(.97); transform-origin: center top;
+}
+.balloon-pink {
+  background: linear-gradient(180deg, #f1bfca 0%, #e3a0b0 40%, #cc8597 70%, #a9606f 100%);
+  -webkit-background-clip: text; background-clip: text;
+  filter: drop-shadow(0 3px 0 rgba(185, 115, 132, .35)) drop-shadow(0 14px 18px rgba(185, 115, 132, .3));
+}
+.title .line:nth-child(2) .balloon { animation-delay: -1.8s; }
+.title .line:nth-child(3) .balloon { animation-delay: -3.6s; }
 
 .lead { font-size: 1.12rem; font-weight: 300; color: var(--choc-soft); max-width: 30em; margin: 28px 0 36px; animation: fadeUp 1s var(--ease) .9s both; }
 .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 30px; animation: fadeUp 1s var(--ease) 1.05s both; }
@@ -384,6 +405,7 @@ svg use { pointer-events: none; }
 @keyframes zoomIn { from { transform: scale(1.08); } to { transform: none; } }
 @keyframes float { from { transform: translate(0, 0) scale(1); } to { transform: translate(40px, 30px) scale(1.12); } }
 @keyframes spin { to { transform: rotate(360deg); } }
+@keyframes bob { 0%, 100% { translate: 0 0; rotate: 0deg; } 50% { translate: 0 -7px; rotate: -.6deg; } }
 @keyframes spinSlow { to { rotate: 360deg; } }
 @keyframes pulse { 0%, 100% { opacity: 1; scale: 1; } 50% { opacity: .4; scale: .7; } }
 @keyframes eq { from { transform: scaleY(.15); } to { transform: scaleY(1); } }
