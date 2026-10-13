@@ -1,4 +1,4 @@
-# Best Version by Daniel — אתר הקורסים
+# The Full Wellness Package — by Daniel Bellaish
 
 אתר סטטי (HTML/CSS/JS) שמציג קורסים בתשלום ומדריכים בחינם.
 

@@ -29,7 +29,7 @@ function paidCard(c) {
           ${c.oldPrice ? `<span class="old-price">${esc(c.oldPrice)} ₪</span>` : ""}
           ${saving > 0 ? `<span class="saving">חיסכון של ${saving} ₪</span>` : ""}
         </div>
-        <a class="btn btn-solid" href="${esc(c.url || "#")}">${esc(c.buttonText || "לפרטים על הקורס")} ${ARROW}</a>
+        <a class="btn btn-pink" href="${esc(c.url || "#")}">${esc(c.buttonText || "לפרטים על הקורס")} ${ARROW}</a>
         ${c.payUrl ? `<a class="pay-link" href="${esc(c.payUrl)}">או מעבר ישיר לתשלום</a>` : ""}
       </div>
     </article>`;
@@ -40,7 +40,7 @@ function freeCard(g) {
   return `
     <article class="card card-free">
       ${exampleRibbon(g)}
-      <span class="badge badge-dark">${esc(g.badge || "חינם 🎁")}</span>
+      <span class="badge badge-choc">${esc(g.badge || "חינם 🎁")}</span>
       <h3>${esc(g.title)}</h3>
       ${g.description ? `<p class="desc">${esc(g.description)}</p>` : ""}
       ${tags ? `<div class="tags">${tags}</div>` : ""}
