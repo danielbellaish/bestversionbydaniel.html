@@ -48,7 +48,7 @@ function freeCard(g) {
 const comingSoon = `
   <div class="coming" data-reveal>
     <p class="label">Coming soon</p>
-    <h3>המדריכים החינמיים בדרך</h3>
+    <h3>הטיפים והמדריכים בדרך</h3>
     <p>עקבי אחריי כדי לקבל אותם ראשונה — טיפים, שגרות ותוכן חינמי עולים שם כל שבוע.</p>
     <div class="follow">
       <a data-link="instagram" href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-instagram"/></svg>Instagram</a>
@@ -100,14 +100,99 @@ if (podcastLive) {
   el.innerHTML = html;
 })();
 
-/* ---------- Scroll: progress path Day 01→30, marquee ---------- */
+/* ---------- Hub counts + all-links list ---------- */
+
+(function hub() {
+  const n = PAID_COURSES.length;
+  document.getElementById("hub-courses").textContent = n ? (n === 1 ? "אתגר אחד פתוח עכשיו" : `${n} פתוחים עכשיו`) : "בקרוב";
+  document.getElementById("hub-tips").textContent = FREE_GUIDES.length ? `${FREE_GUIDES.length} זמינים` : "בקרוב";
+  document.getElementById("hub-podcast").textContent = podcastLive ? "באוויר" : "בקרוב";
+
+  const rows = [
+    { key: "instagram", icon: "#i-instagram", title: "Instagram", sub: "@daniel_bellaish" },
+    { key: "tiktok", icon: "#i-tiktok", title: "TikTok", sub: "@daniel_bellaish" },
+    { key: "spotify", icon: "#i-spotify", title: "הפודקאסט ב־Spotify", sub: "בקרוב" },
+    { key: "applePodcasts", icon: "#i-apple-podcasts", title: "הפודקאסט ב־Apple Podcasts", sub: "בקרוב" },
+  ].map((r) => {
+    const url = LINKS[r.key];
+    const live = Boolean(url);
+    const sub = live && r.sub === "בקרוב" ? "האזינו עכשיו" : r.sub;
+    return `<a class="link-row${live ? "" : " soon"}" ${live ? `href="${esc(url)}" target="_blank" rel="noopener"` : 'aria-disabled="true"'}>
+      <span class="lr-ico"><svg aria-hidden="true"><use href="${r.icon}"/></svg></span>
+      <span class="lr-text"><b>${esc(r.title)}</b><small>${esc(sub)}</small></span>
+      <i aria-hidden="true">${live ? "←" : "בקרוב"}</i></a>`;
+  });
+  const courseRows = PAID_COURSES.map((c) => `<a class="link-row" href="${esc(c.url || "#course")}" target="_blank" rel="noopener">
+      <span class="lr-ico ico-star" aria-hidden="true">✦</span>
+      <span class="lr-text"><b>${esc(c.title)}</b><small>${esc(c.badge || "אתגר")}${c.price ? ` · ${esc(c.price)} ₪` : ""}</small></span>
+      <i aria-hidden="true">←</i></a>`);
+  document.getElementById("links-list").innerHTML = courseRows.concat(rows).join("");
+})();
+
+/* ---------- Intro: 0→100%, arrow hits the gold target, it bursts, brand name, then the site ---------- */
+
+(function intro() {
+  const root = document.documentElement;
+  const loader = document.getElementById("loader");
+  if (!root.classList.contains("is-loading")) { loader.remove(); return; }
+
+  const fill = document.getElementById("loader-fill");
+  const arrow = document.getElementById("loader-arrow");
+  const pct = document.getElementById("loader-pct");
+  const burst = document.getElementById("burst");
+  const DURATION = 2600;
+  let loaded = document.readyState === "complete";
+  addEventListener("load", () => { loaded = true; });
+
+  // gold + pink particles for the burst
+  const colors = ["var(--gold)", "var(--gold)", "var(--pink-deep)", "var(--pink)", "#d9b56a"];
+  let parts = "";
+  for (let k = 0; k < 44; k++) {
+    const a = (k / 44) * Math.PI * 2 + Math.random() * 0.3;
+    const d = 90 + Math.random() * 170;
+    parts += `<span style="--x:${(Math.cos(a) * d).toFixed(0)}px;--y:${(Math.sin(a) * d).toFixed(0)}px;--s:${(5 + Math.random() * 8).toFixed(1)}px;--c:${colors[k % colors.length]};animation-delay:${(Math.random() * 0.12).toFixed(2)}s"></span>`;
+  }
+  burst.innerHTML = parts;
+
+  const start = performance.now();
+  let finished = false;
+  function frame(now) {
+    let p = Math.min(1, (now - start) / DURATION);
+    p = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;   // ease-in-out
+    if (!loaded) p = Math.min(p, 0.99);      // hold at 99% until the page has loaded
+    const v = Math.round(p * 100);
+    pct.textContent = v;
+    fill.style.width = `${p * 100}%`;
+    arrow.style.right = `${p * 100}%`;
+    if (v >= 100) return hit();
+    requestAnimationFrame(frame);
+  }
+  function hit() {
+    if (finished) return;
+    finished = true;
+    loader.classList.add("hit");
+    setTimeout(() => loader.classList.add("done"), 1000);
+    setTimeout(leave, 3200);
+  }
+  function leave() {
+    loader.classList.add("out");
+    root.classList.remove("is-loading");
+    try { sessionStorage.setItem("fwp-intro", "1"); } catch (e) {}
+    setTimeout(() => loader.remove(), 1100);
+  }
+  // tap / key skips the intro
+  loader.addEventListener("click", () => { finished = true; leave(); });
+  addEventListener("keydown", function skip() { if (!finished) { finished = true; leave(); } removeEventListener("keydown", skip); });
+  requestAnimationFrame(frame);
+})();
+
+/* ---------- Scroll: side arrow travels to the target, marquee ---------- */
 
 (function scrollFx() {
-  const fill = document.querySelector(".path-fill");
-  const day = document.getElementById("path-day");
-  const stage = document.getElementById("path-stage");
-  const stones = [...document.querySelectorAll(".path .ms")];
-  const STAGES = ["מתחילה", "בונה הרגלים", "נכנסת לשגרה", "הגרסה הכי טובה שלך ✦"];
+  const fill = document.getElementById("ab-fill");
+  const head = document.getElementById("ab-head");
+  const label = document.getElementById("ab-pct");
+  const target = document.getElementById("ab-target");
   const marquee = document.getElementById("marquee");
   let ticking = false;
 
@@ -115,15 +200,10 @@ if (podcastLive) {
     ticking = false;
     const max = document.documentElement.scrollHeight - innerHeight;
     const p = max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0;
-    const d = 1 + Math.round(p * 29);
-    fill.style.width = `${p * 100}%`;
-    day.textContent = String(d).padStart(2, "0");
-    const idx = d >= 30 ? 3 : d >= 20 ? 2 : d >= 10 ? 1 : 0;
-    stage.textContent = STAGES[idx];
-    stones.forEach((s, k) => {
-      s.classList.toggle("done", k <= idx);
-      s.classList.toggle("now", k === idx);
-    });
+    fill.style.height = `${p * 100}%`;
+    head.style.top = `${p * 100}%`;
+    label.textContent = `${Math.round(p * 100)}%`;
+    target.classList.toggle("hit", p > 0.995);
   }
 
   addEventListener("scroll", () => {

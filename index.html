@@ -10,11 +10,47 @@
   <meta property="og:image" content="assets/images/daniel.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Frank+Ruhl+Libre:wght@300;400;500&family=Suez+One&family=Gveret+Levin&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Frank+Ruhl+Libre:wght@300;400;500&family=Noto+Serif+Hebrew:wght@300;400;500&family=Fredoka:wght@500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Ccircle cx=%2732%27 cy=%2732%27 r=%2732%27 fill=%27%234a2c21%27/%3E%3Cpath d=%27M32 14l4 14 14 4-14 4-4 14-4-14-14-4 14-4z%27 fill=%27%23f3cdd4%27/%3E%3C/svg%3E">
   <link rel="stylesheet" href="style.css">
+  <script>
+    // Intro loader: once per visit, skipped for reduced motion. Safety timeout so the site never stays hidden.
+    (function () {
+      var d = document.documentElement, seen = false;
+      try { seen = sessionStorage.getItem("fwp-intro") === "1"; } catch (e) {}
+      if (seen || matchMedia("(prefers-reduced-motion: reduce)").matches) { d.classList.add("no-intro"); return; }
+      d.classList.add("is-loading");
+      setTimeout(function () { d.classList.remove("is-loading"); d.classList.add("no-intro"); }, 9000);
+    })();
+  </script>
 </head>
 <body>
+
+  <!-- ===== Intro loader ===== -->
+  <div class="loader" id="loader" role="status" aria-label="טוען את האתר">
+    <div class="loader-stage">
+      <div class="loader-shot" aria-hidden="true">
+        <div class="loader-line"><div class="loader-fill" id="loader-fill"></div>
+          <svg class="loader-arrow" id="loader-arrow" viewBox="0 0 28 16"><path d="M0 8h18M28 8L16 1v14z"/></svg>
+        </div>
+        <div class="target" id="loader-target"><i></i><i></i><i></i><span class="burst" id="burst"></span></div>
+      </div>
+      <p class="loader-pct" aria-hidden="true"><b id="loader-pct">0</b><small>%</small></p>
+      <div class="loader-brand">
+        <span class="lb-name">The Full Wellness Package</span>
+        <span class="lb-by">by Daniel Bellaish</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Side arrow: travels down the page and hits the target at 100% ===== -->
+  <div class="arrowbar" aria-hidden="true">
+    <div class="ab-track">
+      <div class="ab-fill" id="ab-fill"></div>
+      <div class="ab-head" id="ab-head"><svg viewBox="0 0 16 22"><path d="M8 22L0 10h5V0h6v10h5z"/></svg><span id="ab-pct">0%</span></div>
+    </div>
+    <div class="target ab-target" id="ab-target"><i></i><i></i><i></i></div>
+  </div>
 
   <!-- shared SVG gradients + icon sprites -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -49,24 +85,15 @@
       <span class="brand-by">by Daniel Bellaish</span>
     </a>
     <nav class="nav" aria-label="ניווט ראשי">
-      <a class="nav-link" href="#course">הקורס</a>
-      <a class="nav-link" href="#podcast">הפודקאסט</a>
-      <a class="nav-link" href="#free">מדריכים</a>
+      <a class="nav-link" href="#course">אתגרים וקורסים</a>
+      <a class="nav-link" href="#free">טיפים</a>
+      <a class="nav-link" href="#podcast">פודקאסט</a>
+      <a class="nav-link" href="#links">קישורים</a>
       <span class="socials">
         <a data-link="instagram" href="#" aria-label="Instagram" target="_blank" rel="noopener"><svg><use href="#i-instagram"/></svg></a>
         <a data-link="tiktok" href="#" aria-label="TikTok" target="_blank" rel="noopener"><svg><use href="#i-tiktok"/></svg></a>
       </span>
     </nav>
-    <div class="path" aria-hidden="true">
-      <div class="path-track">
-        <div class="path-fill"></div>
-        <span class="ms" style="--at:0%"><i></i><em>יום 1 · מתחילה</em></span>
-        <span class="ms" style="--at:33.33%"><i></i><em>יום 10 · הרגלים</em></span>
-        <span class="ms" style="--at:66.66%"><i></i><em>יום 20 · שגרה</em></span>
-        <span class="ms ms-goal" style="--at:100%"><i></i><em>יום 30 · הגרסה הכי טובה שלך</em></span>
-      </div>
-      <span class="path-readout"><b id="path-day">01</b><small>/30</small><span id="path-stage">מתחילה</span></span>
-    </div>
   </header>
 
   <main id="top">
@@ -89,31 +116,32 @@
         <p class="kicker"><span class="rule"></span>Wellness · Growth · Self-love</p>
         <h1 class="title">
           <span class="line"><span>להפוך לגרסה</span></span>
-          <span class="line line-script"><span>הטובה ביותר</span></span>
+          <span class="line line-accent"><span>הטובה ביותר</span></span>
           <span class="line"><span>של עצמך.</span></span>
         </h1>
-        <p class="lead">קורסים, מדריכים וכלים לגוף, לנפש ולשגרה. בעברית, מוקלטים, ובקצב שלך — כדי שהשינוי יקרה מבפנים ויישאר.</p>
+        <p class="lead">האתגרים, הקורסים, הטיפים והפודקאסט שלי — הכל במקום אחד. לגוף, לנפש ולשגרה, בעברית ובקצב שלך.</p>
         <div class="actions">
-          <a class="btn-primary" href="#course"><span>להצטרפות לאתגר</span><i aria-hidden="true">←</i></a>
-          <a class="link-arrow" href="#pillars">מה עובדים עליו? <i aria-hidden="true">↓</i></a>
+          <a class="btn-primary" href="#course"><span>לאתגרים ולקורסים</span><i aria-hidden="true">←</i></a>
+          <a class="link-arrow" href="#links">כל הקישורים <i aria-hidden="true">↓</i></a>
         </div>
         <p class="signature">with love, Daniel</p>
       </div>
     </section>
 
-    <!-- ===== Social proof ===== -->
-    <section class="proof" aria-label="על האתגר">
-      <div class="proof-item"><b>300+</b><span>בנות כבר באתגר</span></div>
-      <div class="proof-item"><b>30</b><span>ימים · נושא חדש כל יום</span></div>
-      <div class="proof-item"><b>4</b><span>שבועות · שינוי בשלבים</span></div>
-      <div class="proof-item"><b>∞</b><span>גישה מיידית · בלי מינוי</span></div>
-    </section>
+    <!-- ===== Hub: everything on the site ===== -->
+    <nav class="hub" aria-label="מה יש באתר">
+      <a class="hub-item" href="#course"><span class="hub-k">Challenges &amp; Courses</span><b>אתגרים וקורסים</b><small id="hub-courses">בקרוב</small></a>
+      <a class="hub-item" href="#free"><span class="hub-k">Tips &amp; Guides</span><b>טיפים ומדריכים</b><small id="hub-tips">בקרוב</small></a>
+      <a class="hub-item" href="#podcast"><span class="hub-k">The Podcast</span><b>הפודקאסט</b><small id="hub-podcast">בקרוב</small></a>
+      <a class="hub-item" href="#links"><span class="hub-k">Links</span><b>כל הקישורים</b><small>אינסטגרם · טיקטוק</small></a>
+    </nav>
 
     <!-- ===== Paid course ===== -->
     <section id="course" class="section section-paid">
       <div class="section-head" data-reveal>
-        <p class="label">The Course</p>
-        <h2>הקורס</h2>
+        <p class="label">Challenges &amp; Courses</p>
+        <h2>אתגרים וקורסים</h2>
+        <p>תוכניות מוקלטות שנשארות איתך — לצפות, לחזור, ולהתקדם בקצב שלך.</p>
       </div>
       <div id="paid-list" class="courses"></div>
     </section>
@@ -175,11 +203,20 @@
     <!-- ===== Free guides ===== -->
     <section id="free" class="section section-free">
       <div class="section-head" data-reveal>
-        <p class="label">Free Guides</p>
-        <h2>מדריכים בחינם</h2>
-        <p>מתנה קטנה ממני — לשמור, לנסות ולהתחיל כבר היום.</p>
+        <p class="label">Tips &amp; Guides</p>
+        <h2>טיפים ומדריכים</h2>
+        <p>טיפים קטנים ומדריכים חינמיים — לשמור, לנסות ולהתחיל כבר היום.</p>
       </div>
       <div id="free-list" class="grid grid-free"></div>
+    </section>
+
+    <!-- ===== All links ===== -->
+    <section id="links" class="section section-links">
+      <div class="section-head" data-reveal>
+        <p class="label">Links</p>
+        <h2>כל הקישורים במקום אחד</h2>
+      </div>
+      <div class="links" id="links-list"></div>
     </section>
 
     <!-- ===== Quote ===== -->
@@ -200,10 +237,10 @@
       <a data-link="tiktok" href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-tiktok"/></svg>TikTok</a>
     </div>
     <nav class="footer-links" aria-label="ניווט תחתון">
-      <a href="#course">הקורס</a>
-      <a href="#pillars">גוף. נפש. שגרה.</a>
+      <a href="#course">אתגרים וקורסים</a>
+      <a href="#free">טיפים ומדריכים</a>
       <a href="#podcast">הפודקאסט</a>
-      <a href="#free">מדריכים בחינם</a>
+      <a href="#links">כל הקישורים</a>
     </nav>
     <p class="footer-copy">© <span id="year"></span> Daniel Bellaish · כל הזכויות שמורות</p>
   </footer>
