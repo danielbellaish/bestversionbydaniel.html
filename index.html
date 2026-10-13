@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Best Version by Daniel · הקורסים</title>
+  <meta name="description" content="כל הקורסים, המדריכים והפרומפטים של Best Version by Daniel — בתשלום ובחינם.">
+  <meta property="og:title" content="Best Version by Daniel · הקורסים">
+  <meta property="og:description" content="כל הקורסים, המדריכים והפרומפטים במקום אחד.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="brand" href="#top">
+      <span class="brand-name">Best Version <em>by Daniel</em></span>
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="20"/><path d="M20 8c6 4 8 10 0 24-8-14-6-20 0-24z" fill="var(--bg)"/><path d="M20 12v18" stroke="var(--accent-dark)" stroke-width="1.5"/></svg>
+      </span>
+    </a>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <h1>בחרו את <span class="hl">הקורס שלכם</span></h1>
+      <p>קורסים דיגיטליים בעברית, עם תוכן מוקלט שצופים בו בקצב שלכם.</p>
+      <nav class="jump">
+        <a href="#paid">קורסים</a>
+        <a href="#free">מדריכים בחינם</a>
+      </nav>
+    </section>
+
+    <section id="paid" class="section">
+      <div id="paid-list" class="grid grid-paid"></div>
+    </section>
+
+    <section id="free" class="section">
+      <div class="section-head">
+        <h2>מדריכים ופרומפטים <span class="hl">בחינם</span></h2>
+        <p>להעתיק, להדביק ולנסות. בלי הרשמה.</p>
+      </div>
+      <div id="free-list" class="grid grid-free"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="brand brand-small">
+      <span class="brand-name">Best Version <em>by Daniel</em></span>
+    </div>
+    <p class="footer-links">
+      <a href="#paid">קורסים</a>
+      <a href="#free">מדריכים בחינם</a>
+    </p>
+    <p class="footer-copy">© <span id="year"></span> Best Version by Daniel · כל הזכויות שמורות</p>
+  </footer>
+
+  <script src="courses.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
