@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>The Full Wellness Package · by Daniel Bellaish</title>
-  <meta name="description" content="קורסים, מדריכים וכלים לגוף, לנפש ולשגרה — by Daniel Bellaish.">
+  <meta name="description" content="קורסים, מדריכים ופודקאסט על התפתחות אישית, כושר, תזונה ולייפסטייל — by Daniel Bellaish.">
   <meta property="og:title" content="The Full Wellness Package · by Daniel Bellaish">
-  <meta property="og:description" content="קורסים, מדריכים וכלים לגוף, לנפש ולשגרה.">
+  <meta property="og:description" content="הגרסה הכי טובה שלך מתחילה ביום אחד.">
   <meta property="og:image" content="assets/images/daniel.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,57 +15,118 @@
 </head>
 <body>
 
+  <!-- shared SVG gradients + icon sprites -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="holo" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#c98a9a"/>
+        <stop offset=".35" stop-color="#b8924a"/>
+        <stop offset=".7" stop-color="#7d8c5c"/>
+        <stop offset="1" stop-color="#c98a9a"/>
+      </linearGradient>
+    </defs>
+    <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor"/></symbol>
+    <symbol id="i-tiktok" viewBox="0 0 24 24"><path d="M14.5 3c.3 2.4 1.9 4.2 4.5 4.4v3.1c-1.6 0-3.1-.5-4.4-1.4v6.3A5.6 5.6 0 1 1 9 9.8v3.2a2.5 2.5 0 1 0 2.4 2.5V3h3.1z" fill="currentColor"/></symbol>
+    <symbol id="i-spotify" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M7 9.3c3.5-1 7.4-.7 10.3.9M7.6 12.4c2.9-.8 6-.5 8.4.8M8.2 15.3c2.3-.6 4.6-.4 6.5.6" fill="none" stroke="var(--btn-bg, #fff)" stroke-width="1.5" stroke-linecap="round"/></symbol>
+    <symbol id="i-apple-podcasts" viewBox="0 0 24 24"><circle cx="12" cy="10" r="2.4" fill="currentColor"/><path d="M10.6 14h2.8l-.5 7h-1.8z" fill="currentColor"/><path d="M7.6 15.2a6 6 0 1 1 8.8 0M5.4 17.6a9 9 0 1 1 13.2 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  </svg>
+
+  <!-- ===== Podcast announcement bar ===== -->
+  <a class="announce" href="#podcast" id="announce">
+    <span class="announce-dot" aria-hidden="true"></span>
+    <span id="announce-text">הפודקאסט שלי עולה בקרוב</span>
+    <span class="announce-sep" aria-hidden="true">·</span>
+    <span class="announce-platforms">
+      <svg aria-hidden="true"><use href="#i-spotify"/></svg>Spotify
+      <svg aria-hidden="true"><use href="#i-apple-podcasts"/></svg>Apple Podcasts
+    </span>
+  </a>
+
   <header class="topbar">
     <a class="brand" href="#top" aria-label="The Full Wellness Package by Daniel Bellaish">
       <span class="brand-name">The Full Wellness Package</span>
       <span class="brand-by">by Daniel Bellaish</span>
     </a>
-    <nav class="nav">
-      <a class="nav-link" href="#paid">הקורסים</a>
-      <a class="nav-link" href="#free">מדריכים בחינם</a>
-      <a class="nav-cta" href="#paid">להצטרפות</a>
+    <nav class="nav" aria-label="ניווט ראשי">
+      <a class="nav-link" href="#course">הקורס</a>
+      <a class="nav-link" href="#podcast">הפודקאסט</a>
+      <a class="nav-link" href="#free">חינם</a>
+      <span class="socials">
+        <a data-link="instagram" href="#" aria-label="Instagram" target="_blank" rel="noopener"><svg><use href="#i-instagram"/></svg></a>
+        <a data-link="tiktok" href="#" aria-label="TikTok" target="_blank" rel="noopener"><svg><use href="#i-tiktok"/></svg></a>
+      </span>
     </nav>
   </header>
+
+  <!-- ===== Scroll journey: Day 01 → Day 30 ===== -->
+  <div class="journey" aria-hidden="true">
+    <div class="journey-track"><div class="journey-fill"></div><div class="journey-dot"></div></div>
+    <div class="journey-label"><small>DAY</small><b id="journey-day">01</b><small>/30</small></div>
+  </div>
 
   <main id="top">
 
     <!-- ===== Hero ===== -->
     <section class="hero">
-      <div class="hero-glow" aria-hidden="true"><span></span><span></span></div>
+      <div class="orb orb-main" data-speed="-0.12" aria-hidden="true"></div>
+      <div class="orb orb-small" data-speed="0.18" aria-hidden="true"></div>
 
-      <div class="hero-visual">
-        <div class="portrait">
-          <svg class="ring" viewBox="0 0 200 200" direction="ltr" aria-hidden="true">
-            <defs><path id="ringPath" d="M100,100 m-88,0 a88,88 0 1,1 176,0 a88,88 0 1,1 -176,0"/></defs>
-            <text><textPath href="#ringPath" textLength="548">THE FULL WELLNESS PACKAGE ✦ BY DANIEL BELLAISH ✦ </textPath></text>
-          </svg>
-          <img src="assets/images/daniel.jpg" alt="Daniel Bellaish">
-        </div>
+      <!-- line-art: fitness · nutrition · lifestyle -->
+      <div class="art" aria-hidden="true">
+        <svg class="ico ico-dumbbell" data-speed="0.25" viewBox="0 0 64 64"><path pathLength="1" d="M8 26v12M14 19v26M50 19v26M56 26v12M14 32h36"/></svg>
+        <svg class="ico ico-leaf" data-speed="-0.2" viewBox="0 0 64 64"><path pathLength="1" d="M12 52C12 28 28 12 52 12c0 24-16 40-40 40zM12 52l22-22"/></svg>
+        <svg class="ico ico-drop" data-speed="0.35" viewBox="0 0 64 64"><path pathLength="1" d="M32 8C22 24 16 31 16 40a16 16 0 0 0 32 0c0-9-6-16-16-32zM24 42a8 8 0 0 0 8 8"/></svg>
+        <svg class="ico ico-sun" data-speed="-0.3" viewBox="0 0 64 64"><path pathLength="1" d="M32 22a10 10 0 1 1 0 20a10 10 0 1 1 0-20M32 6v7M32 51v7M6 32h7M51 32h7M13.6 13.6l5 5M45.4 45.4l5 5M13.6 50.4l5-5M45.4 18.6l5-5"/></svg>
+        <svg class="ico ico-pulse" data-speed="0.15" viewBox="0 0 96 40"><path pathLength="1" d="M2 22h22l6-14 10 28 7-18 5 4h42"/></svg>
+        <svg class="ico ico-apple" data-speed="-0.15" viewBox="0 0 64 64"><path pathLength="1" d="M32 20c-4-6-14-6-18 2-4 9 2 26 10 30 4 2 6 0 8 0s4 2 8 0c8-4 14-21 10-30-4-8-14-8-18-2zM32 20c0-6 3-10 8-12"/></svg>
+        <svg class="ico ico-moon" data-speed="0.3" viewBox="0 0 64 64"><path pathLength="1" d="M44 42A18 18 0 1 1 30 14a14 14 0 0 0 14 28z"/></svg>
       </div>
 
-      <div class="hero-text">
-        <p class="kicker"><span class="rule"></span>Wellness · Growth · Self-love</p>
-        <h1 class="title">
-          <span class="line"><span>להפוך לגרסה</span></span>
-          <span class="line"><span><em>הטובה ביותר</em></span></span>
-          <span class="line"><span>של עצמך.</span></span>
+      <div class="hero-inner">
+        <p class="kicker"><span class="rule"></span><span>חודש אחד · 30 ימים · שינוי אחד גדול</span></p>
+
+        <h1 class="headline">
+          <span class="hl hl-1"><span>הגרסה</span></span>
+          <span class="hl hl-2"><span class="holo-text">הכי טובה</span></span>
+          <span class="hl hl-3"><span>שלך מתחילה ב<span class="rotator" id="rotator"><span class="is-on">בוקר אחד.</span><span>הרגל אחד.</span><span>החלטה אחת.</span><span>יום אחד.</span></span></span></span>
         </h1>
-        <p class="lead">קורסים, מדריכים וכלים לגוף, לנפש ולשגרה. בעברית, מוקלטים, ובקצב שלך — כדי שהשינוי יקרה מבפנים ויישאר.</p>
-        <div class="actions">
-          <a class="btn-primary" href="#paid"><span>לכל הקורסים</span><i aria-hidden="true">←</i></a>
-          <a class="link-arrow" href="#free">מדריכים בחינם <i aria-hidden="true">↓</i></a>
+
+        <div class="hero-foot">
+          <p class="lead">התפתחות אישית, כושר, תזונה ולייפסטייל — בקורסים מוקלטים, בעברית, בקצב שלך.</p>
+          <div class="actions">
+            <a class="btn-primary" href="#course"><span>לקורס שלי</span><i aria-hidden="true">←</i></a>
+            <a class="link-arrow" href="#podcast">לפודקאסט <i aria-hidden="true">↓</i></a>
+          </div>
         </div>
-        <p class="signature">with love, Daniel</p>
+
+        <div class="scroll-cue" aria-hidden="true"><span class="scroll-line"></span><span>Scroll</span></div>
       </div>
     </section>
 
     <!-- ===== Marquee ===== -->
     <div class="marquee" aria-hidden="true">
-      <div class="marquee-track">
-        <span>Glow Up</span><b>✦</b><span>Self Love</span><b>✦</b><span>Level Up</span><b>✦</b><span>Inner Peace</span><b>✦</b><span>Future Self</span><b>✦</b>
-        <span>Glow Up</span><b>✦</b><span>Self Love</span><b>✦</b><span>Level Up</span><b>✦</b><span>Inner Peace</span><b>✦</b><span>Future Self</span><b>✦</b>
+      <div class="marquee-track" id="marquee">
+        <span>Glow Up</span><b>✦</b><span>Move Daily</span><b>✦</b><span>Eat Well</span><b>✦</b><span>Self Love</span><b>✦</b><span>Level Up</span><b>✦</b><span>Future Self</span><b>✦</b>
+        <span>Glow Up</span><b>✦</b><span>Move Daily</span><b>✦</b><span>Eat Well</span><b>✦</b><span>Self Love</span><b>✦</b><span>Level Up</span><b>✦</b><span>Future Self</span><b>✦</b>
       </div>
     </div>
+
+    <!-- ===== Podcast ===== -->
+    <section id="podcast" class="podcast">
+      <div class="podcast-inner">
+        <div class="wave" id="wave" aria-hidden="true"></div>
+        <div class="podcast-text" data-reveal>
+          <p class="label">The Podcast</p>
+          <h2>הפודקאסט <em>בדרך</em></h2>
+          <p>שיחות כנות על הרגלים, תזונה, כושר, ביטחון עצמי והדרך לגרסה הכי טובה של עצמך. לאוזניים — בהליכה, באימון או בבוקר עם קפה.</p>
+          <div class="listen">
+            <a class="listen-btn" data-podcast="spotify" href="#"><svg aria-hidden="true"><use href="#i-spotify"/></svg><span><small>האזינו ב־</small>Spotify</span></a>
+            <a class="listen-btn" data-podcast="applePodcasts" href="#"><svg aria-hidden="true"><use href="#i-apple-podcasts"/></svg><span><small>האזינו ב־</small>Apple Podcasts</span></a>
+          </div>
+          <p class="soon-note" id="podcast-note">עולה בקרוב — עקבי באינסטגרם כדי לשמוע ראשונה.</p>
+        </div>
+      </div>
+    </section>
 
     <!-- ===== Pillars ===== -->
     <section class="pillars">
@@ -76,16 +137,19 @@
       </div>
       <div class="pillars-grid">
         <article class="pillar" data-reveal>
+          <svg class="pillar-ico" viewBox="0 0 64 64" aria-hidden="true"><path pathLength="1" d="M8 26v12M14 19v26M50 19v26M56 26v12M14 32h36"/></svg>
           <span class="pillar-en">Body</span>
           <h3>גוף</h3>
           <p>תזונה נכונה, תנועה ואימונים שמרגישים טוב — בלי קיצוניות.</p>
         </article>
         <article class="pillar" data-reveal>
+          <svg class="pillar-ico" viewBox="0 0 64 64" aria-hidden="true"><path pathLength="1" d="M32 52c-8-6-12-14-12-25 6 2 10 7 12 13 2-6 6-11 12-13 0 11-4 19-12 25zM32 52c-10 0-20-4-25-12 6-2 13 0 17 4M32 52c10 0 20-4 25-12-6-2-13 0-17 4"/></svg>
           <span class="pillar-en">Mind</span>
           <h3>נפש</h3>
           <p>חוסן מנטלי, דימוי עצמי והצבת גבולות שמחזירים לך את הקול.</p>
         </article>
         <article class="pillar" data-reveal>
+          <svg class="pillar-ico" viewBox="0 0 64 64" aria-hidden="true"><path pathLength="1" d="M32 22a10 10 0 1 1 0 20a10 10 0 1 1 0-20M32 6v7M32 51v7M6 32h7M51 32h7M13.6 13.6l5 5M45.4 45.4l5 5M13.6 50.4l5-5M45.4 18.6l5-5"/></svg>
           <span class="pillar-en">Rituals</span>
           <h3>שגרה</h3>
           <p>שגרות בוקר וערב, ניהול זמן והרגלים קטנים שנשארים לאורך זמן.</p>
@@ -93,14 +157,13 @@
       </div>
     </section>
 
-    <!-- ===== Paid courses ===== -->
-    <section id="paid" class="section section-paid">
+    <!-- ===== Paid course ===== -->
+    <section id="course" class="section section-paid">
       <div class="section-head" data-reveal>
-        <p class="label">The Courses</p>
-        <h2>הקורסים</h2>
-        <p>תוכן מוקלט שנשאר איתך — לצפות, לחזור, ולהתקדם בקצב שלך.</p>
+        <p class="label">The Course</p>
+        <h2>הקורס</h2>
       </div>
-      <div id="paid-list" class="grid grid-paid"></div>
+      <div id="paid-list" class="courses"></div>
     </section>
 
     <!-- ===== Free guides ===== -->
@@ -126,8 +189,13 @@
       <span class="brand-name">The Full Wellness Package</span>
       <span class="brand-by">by Daniel Bellaish</span>
     </a>
-    <nav class="footer-links">
-      <a href="#paid">הקורסים</a>
+    <div class="footer-socials">
+      <a data-link="instagram" href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-instagram"/></svg>Instagram</a>
+      <a data-link="tiktok" href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-tiktok"/></svg>TikTok</a>
+    </div>
+    <nav class="footer-links" aria-label="ניווט תחתון">
+      <a href="#course">הקורס</a>
+      <a href="#podcast">הפודקאסט</a>
       <a href="#free">מדריכים בחינם</a>
     </nav>
     <p class="footer-copy">© <span id="year"></span> Daniel Bellaish · כל הזכויות שמורות</p>

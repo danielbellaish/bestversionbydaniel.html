@@ -1,36 +1,34 @@
-// Renders the cards from courses.js — no need to edit this file to add courses.
+// Renders content from courses.js and runs the page's motion. No need to edit this file to add content.
 
 const esc = (s) =>
   String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
 const ARROW = '<i aria-hidden="true">←</i>';
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-function exampleRibbon(item) {
-  return item.example ? '<span class="example">example</span>' : "";
-}
+/* ---------- Content ---------- */
 
-function paidCard(c) {
-  const media = c.image
-    ? `<img src="${esc(c.image)}" alt="${esc(c.title)}" loading="lazy">`
-    : `<div class="media-placeholder" aria-hidden="true"><span>Wellness</span></div>`;
-  const features = (c.features || []).map((f) => `<li>${esc(f)}</li>`).join("");
+function courseCard(c) {
   const saving = c.oldPrice && c.price ? c.oldPrice - c.price : 0;
+  const features = (c.features || []).map((f) => `<li>${esc(f)}</li>`).join("");
   return `
-    <article class="card card-paid" data-reveal>
-      ${exampleRibbon(c)}
-      <div class="card-media">${media}</div>
-      <div class="card-body">
+    <article class="course" data-reveal>
+      <div class="course-media">
+        <div class="frame">${c.image ? `<img src="${esc(c.image)}" alt="${esc(c.title)}" loading="lazy">` : ""}</div>
+        <div class="stamp" aria-hidden="true"><span><b>30</b><small>DAYS</small></span></div>
+      </div>
+      <div class="course-body">
         ${c.badge ? `<span class="badge">${esc(c.badge)}</span>` : ""}
         <h3>${esc(c.title)}</h3>
         ${c.description ? `<p class="desc">${esc(c.description)}</p>` : ""}
         ${features ? `<ul class="features">${features}</ul>` : ""}
         <div class="price-row">
-          <span class="price">${esc(c.price)} <small>₪</small></span>
+          <span class="price">${esc(c.price)}<small>₪</small></span>
           ${c.oldPrice ? `<span class="old-price">${esc(c.oldPrice)} ₪</span>` : ""}
           ${saving > 0 ? `<span class="saving">חיסכון של ${saving} ₪</span>` : ""}
         </div>
-        <a class="btn btn-pink" href="${esc(c.url || "#")}">${esc(c.buttonText || "לפרטים על הקורס")} ${ARROW}</a>
-        ${c.payUrl ? `<a class="pay-link" href="${esc(c.payUrl)}">או מעבר ישיר לתשלום</a>` : ""}
+        <a class="btn btn-pink" href="${esc(c.url || "#")}" target="_blank" rel="noopener">${esc(c.buttonText || "לפרטים על הקורס")} ${ARROW}</a>
+        ${c.payUrl ? `<a class="pay-link" href="${esc(c.payUrl)}" target="_blank" rel="noopener">או מעבר ישיר לתשלום</a>` : ""}
       </div>
     </article>`;
 }
@@ -39,27 +37,130 @@ function freeCard(g) {
   const tags = (g.tags || []).map((t) => `<span class="tag">${esc(t)}</span>`).join("");
   return `
     <article class="card card-free" data-reveal>
-      ${exampleRibbon(g)}
       <span class="badge">${esc(g.badge || "חינם")}</span>
       <h3>${esc(g.title)}</h3>
       ${g.description ? `<p class="desc">${esc(g.description)}</p>` : ""}
       ${tags ? `<div class="tags">${tags}</div>` : ""}
-      <a class="btn btn-outline" href="${esc(g.url || "#")}">${esc(g.buttonText || "למדריך")} ${ARROW}</a>
+      <a class="btn btn-outline" href="${esc(g.url || "#")}" target="_blank" rel="noopener">${esc(g.buttonText || "למדריך")} ${ARROW}</a>
     </article>`;
 }
 
-function render(id, items, card, emptyText) {
-  const el = document.getElementById(id);
-  el.innerHTML = items.length ? items.map(card).join("") : `<div class="empty">${esc(emptyText)}</div>`;
-}
+const comingSoon = `
+  <div class="coming" data-reveal>
+    <p class="label">Coming soon</p>
+    <h3>המדריכים החינמיים בדרך</h3>
+    <p>עקבי אחריי כדי לקבל אותם ראשונה — טיפים, שגרות ותוכן חינמי עולים שם כל שבוע.</p>
+    <div class="follow">
+      <a data-link="instagram" href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-instagram"/></svg>Instagram</a>
+      <a data-link="tiktok" href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-tiktok"/></svg>TikTok</a>
+    </div>
+  </div>`;
 
-render("paid-list", PAID_COURSES, paidCard, "קורסים חדשים בדרך");
-render("free-list", FREE_GUIDES, freeCard, "מדריכים חינמיים יעלו בקרוב");
+document.getElementById("paid-list").innerHTML = PAID_COURSES.map(courseCard).join("");
+document.getElementById("free-list").innerHTML = FREE_GUIDES.length ? FREE_GUIDES.map(freeCard).join("") : comingSoon;
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// Gentle fade-up for sections below the fold. Anything already on screen stays visible as is.
+/* ---------- Links ---------- */
+
+document.querySelectorAll("[data-link]").forEach((a) => {
+  const url = LINKS[a.dataset.link];
+  if (url) a.href = url;
+  else a.hidden = true;
+});
+
+const podcastLive = Boolean(LINKS.spotify || LINKS.applePodcasts);
+document.querySelectorAll("[data-podcast]").forEach((a) => {
+  const url = LINKS[a.dataset.podcast];
+  if (url) {
+    a.href = url;
+    a.target = "_blank";
+    a.rel = "noopener";
+  } else {
+    a.classList.add("soon");
+    a.removeAttribute("href");
+    a.setAttribute("aria-disabled", "true");
+  }
+});
+if (podcastLive) {
+  document.getElementById("announce-text").textContent = "הפודקאסט שלי באוויר — האזינו עכשיו";
+  document.querySelector(".podcast h2").innerHTML = "הפודקאסט <em>באוויר</em>";
+  document.getElementById("podcast-note").hidden = true;
+}
+
+/* ---------- Rotating word ---------- */
+
+(function rotator() {
+  const items = [...document.querySelectorAll("#rotator > span")];
+  if (items.length < 2 || reduceMotion) return;
+  let i = 0;
+  setInterval(() => {
+    const prev = items[i];
+    i = (i + 1) % items.length;
+    prev.classList.remove("is-on");
+    prev.classList.add("is-off");
+    items[i].classList.remove("is-off");
+    items[i].classList.add("is-on");
+    setTimeout(() => prev.classList.remove("is-off"), 800);
+  }, 2600);
+})();
+
+/* ---------- Podcast waveform ---------- */
+
+(function wave() {
+  const el = document.getElementById("wave");
+  const n = innerWidth < 760 ? 34 : 44;
+  let html = "";
+  for (let k = 0; k < n; k++) {
+    const h = 0.25 + 0.75 * Math.abs(Math.sin(k * 0.55) * Math.cos(k * 0.21));
+    html += `<i style="height:${Math.round(h * 100)}%;animation-delay:${(-Math.random() * 1.4).toFixed(2)}s;animation-duration:${(0.9 + Math.random() * 0.9).toFixed(2)}s"></i>`;
+  }
+  el.innerHTML = html;
+})();
+
+/* ---------- Scroll: journey Day 01→30, parallax, marquee ---------- */
+
+(function scrollFx() {
+  const fill = document.querySelector(".journey-fill");
+  const dot = document.querySelector(".journey-dot");
+  const day = document.getElementById("journey-day");
+  const marquee = document.getElementById("marquee");
+  const parallax = [...document.querySelectorAll("[data-speed]")];
+  let ticking = false;
+
+  function update() {
+    ticking = false;
+    const max = document.documentElement.scrollHeight - innerHeight;
+    const y = scrollY;
+    const p = max > 0 ? Math.min(1, Math.max(0, y / max)) : 0;
+    fill.style.height = `${p * 100}%`;
+    dot.style.top = `${p * 100}%`;
+    day.textContent = String(1 + Math.round(p * 29)).padStart(2, "0");
+    if (reduceMotion) return;
+    parallax.forEach((el) => { el.style.translate = `0 ${(y * parseFloat(el.dataset.speed)).toFixed(1)}px`; });
+  }
+
+  addEventListener("scroll", () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+  addEventListener("resize", update);
+  update();
+  if (!reduceMotion) {
+    // marquee drifts on its own and speeds up with scrolling
+    let t = 0;
+    const drift = () => {
+      t += 0.35;
+      const half = marquee.scrollWidth / 2 || 1;
+      marquee.style.transform = `translateX(${-((t + scrollY * 0.4) % half)}px)`;
+      requestAnimationFrame(drift);
+    };
+    requestAnimationFrame(drift);
+  }
+})();
+
+/* ---------- Reveal sections below the fold ---------- */
+
 (function reveal() {
-  if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (!("IntersectionObserver" in window) || reduceMotion) return;
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       if (!e.isIntersecting) return;
