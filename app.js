@@ -87,23 +87,6 @@ if (podcastLive) {
   document.getElementById("podcast-note").hidden = true;
 }
 
-/* ---------- Rotating word ---------- */
-
-(function rotator() {
-  const items = [...document.querySelectorAll("#rotator > span")];
-  if (items.length < 2 || reduceMotion) return;
-  let i = 0;
-  setInterval(() => {
-    const prev = items[i];
-    i = (i + 1) % items.length;
-    prev.classList.remove("is-on");
-    prev.classList.add("is-off");
-    items[i].classList.remove("is-off");
-    items[i].classList.add("is-on");
-    setTimeout(() => prev.classList.remove("is-off"), 800);
-  }, 2600);
-})();
-
 /* ---------- Podcast waveform ---------- */
 
 (function wave() {
@@ -117,14 +100,13 @@ if (podcastLive) {
   el.innerHTML = html;
 })();
 
-/* ---------- Scroll: journey Day 01→30, parallax, marquee ---------- */
+/* ---------- Scroll: journey Day 01→30, marquee ---------- */
 
 (function scrollFx() {
   const fill = document.querySelector(".journey-fill");
   const dot = document.querySelector(".journey-dot");
   const day = document.getElementById("journey-day");
   const marquee = document.getElementById("marquee");
-  const parallax = [...document.querySelectorAll("[data-speed]")];
   let ticking = false;
 
   function update() {
@@ -135,8 +117,6 @@ if (podcastLive) {
     fill.style.height = `${p * 100}%`;
     dot.style.top = `${p * 100}%`;
     day.textContent = String(1 + Math.round(p * 29)).padStart(2, "0");
-    if (reduceMotion) return;
-    parallax.forEach((el) => { el.style.translate = `0 ${(y * parseFloat(el.dataset.speed)).toFixed(1)}px`; });
   }
 
   addEventListener("scroll", () => {
