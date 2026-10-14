@@ -15,13 +15,12 @@ function whatsappLink(text) {
 function courseCard(c) {
   const saving = c.oldPrice && c.price ? c.oldPrice - c.price : 0;
   const stats = (c.stats || []).map((s) => `<li>${esc(s)}</li>`).join("");
-  const topics = (c.topics || []).map((t) => `<span>${esc(t)}</span>`).join("");
-  const bonuses = (c.bonuses || []).map((b) => `<li>${esc(b)}</li>`).join("");
   const join = whatsappLink(c.whatsappText);
-  const weeks = (c.weeks || []).map((w, i) => `<li class="week">
-      <span class="wk-n">שבוע ${i + 1}<small>ימים ${esc(w.days)}</small></span>
-      <span class="wk-body"><b>${esc(w.he)} <em>${esc(w.en)}</em></b><span>${esc(w.text)}</span>
-      ${(w.tags || []).length ? `<small class="wk-tags">${w.tags.map(esc).join(" · ")}</small>` : ""}</span></li>`).join("");
+  const weeks = (c.weeks || []).map((w, i) => `<li><details class="week">
+      <summary><span class="wk-n">שבוע ${i + 1}<small>ימים ${esc(w.days)}</small></span>
+        <b class="wk-title">${esc(w.he)} <em>${esc(w.en)}</em></b><span class="wk-arrow" aria-hidden="true"></span></summary>
+      <div class="wk-body"><span>${esc(w.text)}</span>
+      ${(w.tags || []).length ? `<small class="wk-tags">${w.tags.map(esc).join(" · ")}</small>` : ""}</div></details></li>`).join("");
   const faq = (c.faq || []).map((f) => `<details class="faq"><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("");
   return `
     <article class="course" data-reveal>
@@ -34,9 +33,7 @@ function courseCard(c) {
         <h3>${esc(c.title)}</h3>
         ${c.description ? `<p class="desc">${esc(c.description)}</p>` : ""}
         ${stats ? `<ul class="stats">${stats}</ul>` : ""}
-        ${weeks ? `<div class="block"><p class="block-h">המסע — 4 שבועות, 4 שלבים</p><ol class="weeks">${weeks}</ol></div>` : ""}
-        ${topics ? `<div class="block"><p class="block-h">חלק מהנושאים — נושא חדש בכל יום</p><div class="topics">${topics}</div></div>` : ""}
-        ${bonuses ? `<div class="block"><p class="block-h">בונוסים שמחכים לך</p><ul class="bonuses">${bonuses}</ul></div>` : ""}
+        ${weeks ? `<div class="block"><p class="block-h">המסע — 4 שבועות, 4 שלבים · לחצי על שבוע לפירוט</p><ol class="weeks">${weeks}</ol></div>` : ""}
         <div class="price-row">
           <span class="price">${esc(c.price)}<small>₪</small></span>
           ${c.oldPrice ? `<span class="old-price">${esc(c.oldPrice)} ₪</span>` : ""}

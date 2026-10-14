@@ -319,16 +319,24 @@ svg use { pointer-events: none; }
 .bonuses li::before { content: "✦"; color: var(--gold); font-size: .65rem; }
 .course .price-row { margin-top: auto; padding-top: 10px; border-top: 1px solid color-mix(in srgb, var(--pink) 14%, transparent); margin-bottom: 8px; }
 .course-note { margin: 0 0 20px; font-size: .85rem; color: color-mix(in srgb, var(--pink) 70%, var(--choc)); }
-.weeks { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; counter-reset: wk; }
-.week { display: flex; gap: 16px; padding: 12px 0; border-top: 1px solid color-mix(in srgb, var(--pink) 14%, transparent); }
-.week:first-child { border-top: 0; padding-top: 2px; }
+.weeks { list-style: none; padding: 0; margin: 0; }
+.weeks li { border-top: 1px solid color-mix(in srgb, var(--pink) 14%, transparent); }
+.weeks li:first-child { border-top: 0; }
+.week summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 16px; padding: 12px 0; }
+.week summary::-webkit-details-marker { display: none; }
 .wk-n { flex: 0 0 64px; display: flex; flex-direction: column; font-family: var(--f-head); font-size: .95rem; color: var(--cream); line-height: 1.2; }
 .wk-n small { font-family: var(--f-body); font-size: .72rem; color: var(--gold); margin-top: 3px; }
-.wk-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
-.wk-body b { font-family: var(--f-head); font-weight: 400; font-size: 1.08rem; color: var(--pink); }
-.wk-body b em { font-family: var(--f-latin); font-size: 1rem; color: var(--gold); margin-inline-start: 6px; }
-.wk-body > span { font-size: .9rem; font-weight: 300; color: color-mix(in srgb, var(--pink) 78%, var(--choc)); line-height: 1.55; }
+.wk-title { flex: 1; min-width: 0; font-family: var(--f-head); font-weight: 400; font-size: 1.08rem; color: var(--pink); }
+.wk-title em { font-family: var(--f-latin); font-size: 1rem; color: var(--gold); margin-inline-start: 6px; }
+.wk-arrow { width: 30px; height: 30px; flex-shrink: 0; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--pink) 35%, transparent); display: grid; place-items: center; transition: transform .35s var(--ease), background .3s; }
+.wk-arrow::before { content: ""; width: 7px; height: 7px; border-left: 1.5px solid var(--pink); border-bottom: 1.5px solid var(--pink); transform: translateY(-2px) rotate(-45deg); }
+.week summary:hover .wk-arrow { background: color-mix(in srgb, var(--pink) 12%, transparent); }
+.week[open] .wk-arrow { transform: rotate(180deg); }
+.wk-body { display: flex; flex-direction: column; gap: 4px; padding: 0 80px 14px 46px; }
+.wk-body > span { font-size: .92rem; font-weight: 300; color: color-mix(in srgb, var(--pink) 78%, var(--choc)); line-height: 1.6; }
 .wk-tags { font-size: .78rem; color: color-mix(in srgb, var(--pink) 60%, var(--choc)); }
+.week[open] .wk-body { animation: fadeUp .45s var(--ease); }
+@media (max-width: 480px) { .wk-body { padding: 0 0 14px; } }
 .faqs { margin-top: 26px; padding-top: 18px; border-top: 1px solid color-mix(in srgb, var(--pink) 14%, transparent); }
 .faq { border-bottom: 1px solid color-mix(in srgb, var(--pink) 12%, transparent); }
 .faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; color: var(--cream); font-size: .98rem; }
