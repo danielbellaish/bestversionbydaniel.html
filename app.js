@@ -8,40 +8,64 @@ const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* ---------- Content ---------- */
 
+function whatsappLink(text) {
+  return LINKS.whatsapp ? `https://wa.me/${LINKS.whatsapp}?text=${encodeURIComponent(text || "")}` : "";
+}
+
 function courseCard(c) {
   const saving = c.oldPrice && c.price ? c.oldPrice - c.price : 0;
-  const features = (c.features || []).map((f) => `<li>${esc(f)}</li>`).join("");
+  const stats = (c.stats || []).map((s) => `<li>${esc(s)}</li>`).join("");
+  const topics = (c.topics || []).map((t) => `<span>${esc(t)}</span>`).join("");
+  const bonuses = (c.bonuses || []).map((b) => `<li>${esc(b)}</li>`).join("");
+  const join = whatsappLink(c.whatsappText);
+  const weeks = (c.weeks || []).map((w, i) => `<li class="week">
+      <span class="wk-n">שבוע ${i + 1}<small>ימים ${esc(w.days)}</small></span>
+      <span class="wk-body"><b>${esc(w.he)} <em>${esc(w.en)}</em></b><span>${esc(w.text)}</span>
+      ${(w.tags || []).length ? `<small class="wk-tags">${w.tags.map(esc).join(" · ")}</small>` : ""}</span></li>`).join("");
+  const faq = (c.faq || []).map((f) => `<details class="faq"><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("");
   return `
     <article class="course" data-reveal>
       <div class="course-media">
-        <div class="frame">${c.image ? `<img src="${esc(c.image)}" alt="${esc(c.title)}" loading="lazy">` : ""}</div>
-        <div class="stamp" aria-hidden="true"><span><b>30</b><small>DAYS</small></span></div>
+        <div class="frame">${c.image ? `<img src="${esc(c.image)}" alt="${esc(c.title)}" loading="lazy">` : ""}
+          <div class="stamp" aria-hidden="true"><span><b>30</b><small>DAYS</small></span></div></div>
       </div>
       <div class="course-body">
         ${c.badge ? `<span class="badge">${esc(c.badge)}</span>` : ""}
         <h3>${esc(c.title)}</h3>
         ${c.description ? `<p class="desc">${esc(c.description)}</p>` : ""}
-        ${features ? `<ul class="features">${features}</ul>` : ""}
+        ${stats ? `<ul class="stats">${stats}</ul>` : ""}
+        ${weeks ? `<div class="block"><p class="block-h">המסע — 4 שבועות, 4 שלבים</p><ol class="weeks">${weeks}</ol></div>` : ""}
+        ${topics ? `<div class="block"><p class="block-h">חלק מהנושאים — נושא חדש בכל יום</p><div class="topics">${topics}</div></div>` : ""}
+        ${bonuses ? `<div class="block"><p class="block-h">בונוסים שמחכים לך</p><ul class="bonuses">${bonuses}</ul></div>` : ""}
         <div class="price-row">
           <span class="price">${esc(c.price)}<small>₪</small></span>
           ${c.oldPrice ? `<span class="old-price">${esc(c.oldPrice)} ₪</span>` : ""}
           ${saving > 0 ? `<span class="saving">חיסכון של ${saving} ₪</span>` : ""}
         </div>
-        <a class="btn btn-pink" href="${esc(c.url || "#")}" target="_blank" rel="noopener">${esc(c.buttonText || "לפרטים על הקורס")} ${ARROW}</a>
-        ${c.payUrl ? `<a class="pay-link" href="${esc(c.payUrl)}" target="_blank" rel="noopener">או מעבר ישיר לתשלום</a>` : ""}
+        ${c.note ? `<p class="course-note">${esc(c.note)}</p>` : ""}
+        <div class="course-ctas">
+          ${join ? `<a class="btn btn-pink" href="${esc(join)}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg>אני רוצה להצטרף</a>` : ""}
+          ${c.detailsUrl ? `<a class="btn btn-ghost-pink" href="${esc(c.detailsUrl)}" target="_blank" rel="noopener">לפרטים נוספים ${ARROW}</a>` : ""}
+        </div>
+        ${faq ? `<div class="faqs"><p class="block-h">שאלות נפוצות</p>${faq}</div>` : ""}
       </div>
     </article>`;
 }
 
 function freeCard(g) {
   const tags = (g.tags || []).map((t) => `<span class="tag">${esc(t)}</span>`).join("");
+  const dl = g.download ? ` download="${esc(g.download)}"` : ' target="_blank" rel="noopener"';
   return `
-    <article class="card card-free" data-reveal>
-      <span class="badge">${esc(g.badge || "חינם")}</span>
-      <h3>${esc(g.title)}</h3>
-      ${g.description ? `<p class="desc">${esc(g.description)}</p>` : ""}
-      ${tags ? `<div class="tags">${tags}</div>` : ""}
-      <a class="btn btn-outline" href="${esc(g.url || "#")}" target="_blank" rel="noopener">${esc(g.buttonText || "למדריך")} ${ARROW}</a>
+    <article class="card card-free${g.image ? " has-cover" : ""}" data-reveal>
+      ${g.image ? `<a class="guide-cover" href="${esc(g.url || "#")}"${dl} tabindex="-1" aria-hidden="true"><img src="${esc(g.image)}" alt="" loading="lazy"></a>` : ""}
+      <div class="guide-body">
+        <span class="badge">${esc(g.badge || "חינם")}</span>
+        <h3>${esc(g.title)}</h3>
+        ${g.subtitle ? `<p class="guide-sub">${esc(g.subtitle)}</p>` : ""}
+        ${g.description ? `<p class="desc">${esc(g.description)}</p>` : ""}
+        ${tags ? `<div class="tags">${tags}</div>` : ""}
+        <a class="btn btn-outline" href="${esc(g.url || "#")}"${dl}>${esc(g.buttonText || "למדריך")} <i aria-hidden="true">↓</i></a>
+      </div>
     </article>`;
 }
 
@@ -105,7 +129,7 @@ if (podcastLive) {
 (function hub() {
   const n = PAID_COURSES.length;
   document.getElementById("hub-courses").textContent = n ? (n === 1 ? "אתגר אחד פתוח עכשיו" : `${n} פתוחים עכשיו`) : "בקרוב";
-  document.getElementById("hub-tips").textContent = FREE_GUIDES.length ? `${FREE_GUIDES.length} זמינים` : "בקרוב";
+  document.getElementById("hub-tips").textContent = FREE_GUIDES.length ? (FREE_GUIDES.length === 1 ? "מדריך חינמי להורדה" : `${FREE_GUIDES.length} מדריכים להורדה`) : "בקרוב";
   document.getElementById("hub-podcast").textContent = podcastLive ? "באוויר" : "בקרוב";
 
   const rows = [
@@ -122,11 +146,15 @@ if (podcastLive) {
       <span class="lr-text"><b>${esc(r.title)}</b><small>${esc(sub)}</small></span>
       <i aria-hidden="true">${live ? "←" : "בקרוב"}</i></a>`;
   });
-  const courseRows = PAID_COURSES.map((c) => `<a class="link-row" href="${esc(c.url || "#course")}" target="_blank" rel="noopener">
+  const courseRows = PAID_COURSES.map((c) => `<a class="link-row" href="${esc(c.detailsUrl || c.url || "#course")}" target="_blank" rel="noopener">
       <span class="lr-ico ico-star" aria-hidden="true">✦</span>
       <span class="lr-text"><b>${esc(c.title)}</b><small>${esc(c.badge || "אתגר")}${c.price ? ` · ${esc(c.price)} ₪` : ""}</small></span>
       <i aria-hidden="true">←</i></a>`);
-  document.getElementById("links-list").innerHTML = courseRows.concat(rows).join("");
+  const guideRows = FREE_GUIDES.map((g) => `<a class="link-row" href="${esc(g.url || "#free")}"${g.download ? ` download="${esc(g.download)}"` : ' target="_blank" rel="noopener"'}>
+      <span class="lr-ico ico-star" aria-hidden="true">↓</span>
+      <span class="lr-text"><b>${esc(g.title)}</b><small>${esc(g.badge || "מדריך חינם")} · להורדה</small></span>
+      <i aria-hidden="true">←</i></a>`);
+  document.getElementById("links-list").innerHTML = courseRows.concat(guideRows, rows).join("");
 })();
 
 /* ---------- Intro: 0→100%, arrow hits the gold target, it bursts, brand name, then the site ---------- */
