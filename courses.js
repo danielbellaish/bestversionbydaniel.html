@@ -33,7 +33,7 @@ const PAID_COURSES = [
   {
     title: "להפוך לגרסה הכי טובה של עצמך בחודש אחד בלבד",
     description: "30 ימים. 4 שבועות. נושא ממוקד בכל יום — שינוי אמיתי בשלבים, שיהפוך אותך לאישה העוצמתית שתמיד חלמת להיות.",
-    image: "assets/images/course-green.jpg",
+    image: "assets/images/course-bikini.jpg",
     badge: "האתגר · 30 יום",
     stats: ["30 ימים", "4 שבועות", "נושא חדש כל יום", "300+ בנות כבר באתגר"],
     weeks: [

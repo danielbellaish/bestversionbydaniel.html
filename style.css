@@ -588,15 +588,6 @@ html.is-loading .hero *, html.is-loading .topbar { animation-play-state: paused 
 .podcast-visual .wave { position: relative; height: 180px; width: 100%; }
 @media (max-width: 760px) { .podcast-visual { order: 2; } .podcast-visual .wave { height: 100px; } }
 
-/* ===== Links section with photo ===== */
-.links-wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 560px); gap: clamp(24px, 5vw, 64px); align-items: center; max-width: 1040px; margin: 0 auto; }
-.links-wrap .links { margin: 0; max-width: none; }
-.links-visual { position: relative; margin: 0; display: grid; place-items: end center; min-height: 380px; }
-.lv-circle { position: absolute; width: 82%; aspect-ratio: 1; border-radius: 50%; bottom: 6%; left: 50%; transform: translateX(-50%);
-  background: radial-gradient(circle at 50% 35%, #fff6f3, var(--pink) 70%); border: 1px solid rgba(168, 132, 58, .45); }
-.links-visual img { position: relative; width: 100%; max-width: 420px; height: auto; filter: drop-shadow(0 20px 24px rgba(74, 44, 33, .25)); }
-@media (max-width: 860px) { .links-wrap { grid-template-columns: 1fr; } .links-visual { min-height: 0; max-width: 300px; margin: 0 auto; order: -1; } }
-
 /* ===== Quote with arch photo ===== */
 .quote { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: clamp(28px, 5vw, 70px); align-items: center; max-width: 1000px; text-align: right; }
 .quote-arch { aspect-ratio: 3 / 4; border-radius: 200px 200px 16px 16px; overflow: hidden; box-shadow: 0 30px 60px -34px rgba(74, 44, 33, .6); }
