@@ -18,7 +18,7 @@
     (function () {
       var d = document.documentElement, seen = false;
       try { seen = sessionStorage.getItem("fwp-intro") === "1"; } catch (e) {}
-      if (seen || matchMedia("(prefers-reduced-motion: reduce)").matches) { d.classList.add("no-intro"); return; }
+      if (seen || location.hash || matchMedia("(prefers-reduced-motion: reduce)").matches) { d.classList.add("no-intro"); return; }
       d.classList.add("is-loading");
       setTimeout(function () { d.classList.remove("is-loading"); d.classList.add("no-intro"); }, 9000);
     })();

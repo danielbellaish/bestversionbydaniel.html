@@ -79,6 +79,8 @@ const comingSoon = `
 
 document.getElementById("paid-list").innerHTML = PAID_COURSES.map(courseCard).join("");
 document.getElementById("free-list").innerHTML = FREE_GUIDES.length ? FREE_GUIDES.map(freeCard).join("") : comingSoon;
+const firstGuide = document.querySelector("#free-list .card");
+if (firstGuide) firstGuide.id = "guide";
 document.getElementById("year").textContent = new Date().getFullYear();
 
 /* ---------- Links ---------- */
@@ -267,4 +269,20 @@ if (podcastLive) {
     el.classList.add("pre");
     io.observe(el);
   });
+})();
+
+/* ---------- Deep links (e.g. #guide): jump there once the cards are on the page ---------- */
+
+(function deepLink() {
+  const target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+  if (!target) return;
+  target.classList.remove("pre");
+  target.classList.add("in");
+  const go = () => {
+    const header = document.querySelector(".topbar");
+    const y = target.getBoundingClientRect().top + scrollY - (header ? header.offsetHeight : 0) - 24;
+    scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+  };
+  setTimeout(go, 300);
+  addEventListener("load", () => setTimeout(go, 100), { once: true });
 })();
