@@ -33,7 +33,7 @@ const PAID_COURSES = [
   {
     title: "להפוך לגרסה הכי טובה של עצמך בחודש אחד בלבד",
     description: "30 ימים. 4 שבועות. נושא ממוקד בכל יום — שינוי אמיתי בשלבים, שיהפוך אותך לאישה העוצמתית שתמיד חלמת להיות.",
-    image: "assets/images/daniel.jpg",
+    image: "assets/images/course-green.webp",
     badge: "האתגר · 30 יום",
     stats: ["30 ימים", "4 שבועות", "נושא חדש כל יום", "300+ בנות כבר באתגר"],
     weeks: [
@@ -53,7 +53,7 @@ const PAID_COURSES = [
     ],
     note: "תשלום חד פעמי · גישה מיידית לכל 4 השבועות · ללא מינוי",
     price: 149,
-    oldPrice: 269,
+    oldPrice: 249,
     detailsUrl: "https://bestversionbydaniel.tiiny.site",
     whatsappText: "היי דניאל, אני רוצה להצטרף לקורס 'להפוך לגרסה הכי טובה של עצמי בחודש אחד'",
   },

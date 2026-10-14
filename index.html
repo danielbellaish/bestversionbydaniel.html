@@ -7,7 +7,7 @@
   <meta name="description" content="קורסים, מדריכים ופודקאסט על התפתחות אישית, כושר, תזונה ולייפסטייל — by Daniel Bellaish.">
   <meta property="og:title" content="The Full Wellness Package · by Daniel Bellaish">
   <meta property="og:description" content="הגרסה הכי טובה שלך מתחילה ביום אחד.">
-  <meta property="og:image" content="assets/images/daniel.jpg">
+  <meta property="og:image" content="assets/images/og.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Frank+Ruhl+Libre:wght@300;400;500&family=Noto+Serif+Hebrew:wght@300;400;500&family=Fredoka:wght@500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
@@ -109,7 +109,9 @@
             <defs><path id="ringPath" d="M100,100 m-88,0 a88,88 0 1,1 176,0 a88,88 0 1,1 -176,0"/></defs>
             <text><textPath href="#ringPath" textLength="548">THE FULL WELLNESS PACKAGE ✦ BY DANIEL BELLAISH ✦ </textPath></text>
           </svg>
-          <img src="assets/images/daniel.jpg" alt="Daniel Bellaish">
+          <div class="pop-bg"></div>
+          <div class="pop-layer pop-in"><img src="assets/images/hero-white.webp" alt="Daniel Bellaish"></div>
+          <div class="pop-layer pop-out" aria-hidden="true"><img src="assets/images/hero-white.webp" alt=""></div>
         </div>
       </div>
 
@@ -187,7 +189,11 @@
     <!-- ===== Podcast ===== -->
     <section id="podcast" class="podcast">
       <div class="podcast-inner">
-        <div class="wave" id="wave" aria-hidden="true"></div>
+        <div class="podcast-visual" aria-hidden="true">
+          <div class="pv-circle"></div>
+          <img class="pv-img" src="assets/images/reading-pool.webp" alt="" loading="lazy">
+          <div class="wave" id="wave"></div>
+        </div>
         <div class="podcast-text" data-reveal>
           <p class="label">The Podcast</p>
           <h2>הפודקאסט <em>בדרך</em></h2>
@@ -217,14 +223,20 @@
         <p class="label">Links</p>
         <h2>כל הקישורים במקום אחד</h2>
       </div>
-      <div class="links" id="links-list"></div>
+      <div class="links-wrap">
+        <figure class="links-visual" aria-hidden="true"><span class="lv-circle"></span><img src="assets/images/reading-hat.webp" alt="" loading="lazy"></figure>
+        <div class="links" id="links-list"></div>
+      </div>
     </section>
 
     <!-- ===== Quote ===== -->
     <section class="quote" data-reveal>
-      <span class="quote-mark" aria-hidden="true">“</span>
-      <blockquote>הדרך לגרסה הטובה ביותר שלך אינה מתגלה ביום אחד, אלא נבנית מדי יום.</blockquote>
-      <cite>רובין שארמה</cite>
+      <div class="quote-arch"><img src="assets/images/lounger.webp" alt="דניאל קוראת ליד הבריכה" loading="lazy"></div>
+      <div class="quote-text">
+        <span class="quote-mark" aria-hidden="true">“</span>
+        <blockquote>הדרך לגרסה הטובה ביותר שלך אינה מתגלה ביום אחד, אלא נבנית מדי יום.</blockquote>
+        <cite>רובין שארמה</cite>
+      </div>
     </section>
   </main>
 
