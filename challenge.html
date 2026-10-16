@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>The Best Version · 30 Day Challenge</title>
+  <meta name="description" content="אתגר 30 הימים שישנה אותך: 4 שבועות, נושא חדש כל יום — להפוך לגרסה הכי טובה של עצמך בחודש אחד.">
+  <meta property="og:title" content="The Best Version · 30 Day Challenge">
+  <meta property="og:description" content="4 שבועות. 4 שלבים. שינוי שלם.">
+  <meta property="og:image" content="assets/images/challenge/hero.jpg">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Ccircle cx=%2732%27 cy=%2732%27 r=%2732%27 fill=%27%234a2c21%27/%3E%3Cpath d=%27M32 14l4 14 14 4-14 4-4 14-4-14-14-4 14-4z%27 fill=%27%23f3cdd4%27/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=Frank+Ruhl+Libre:wght@500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #faf5ee; --beige: #f1e7da; --sand: #e6d6c3; --white: #fffdf9;
+      --choc: #4a2c21; --choc-soft: #6e4b3b; --pink: #f3cdd4; --pink-deep: #b97384;
+      --olive: #5b6941; --olive-dark: #3d472c; --forest: #3f4a2e; --gold: #a8843a; --gold-ink: #85652a;
+      --f-head: "Frank Ruhl Libre", "David Libre", Georgia, serif;
+      --f-latin: "Cormorant Garamond", Georgia, serif;
+      --f-body: "Assistant", "Heebo", system-ui, sans-serif;
+      --ease: cubic-bezier(.22, .7, .2, 1);
+      --gutter: 20px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--cream); color: var(--choc); font-family: var(--f-body); font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: inherit; }
+    img { max-width: 100%; display: block; }
+    h1, h2, h3 { text-wrap: balance; margin: 0; }
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 0 var(--gutter); }
+
+    /* eyebrow + headings */
+    .eyebrow { display: block; text-align: center; font-size: .82rem; font-weight: 700; letter-spacing: .3em; color: var(--gold-ink); margin-bottom: 10px; }
+    .h2 { font-family: var(--f-head); font-weight: 900; font-size: clamp(1.9rem, 7vw, 2.6rem); line-height: 1.2; text-align: center; color: var(--choc); }
+    .h2 em { font-style: italic; font-weight: 500; color: var(--pink-deep); }
+    .lead { text-align: center; color: var(--choc-soft); font-size: 1.05rem; margin: 14px auto 0; max-width: 32em; }
+    section { padding: 64px 0; }
+
+    /* header */
+    .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 12px var(--gutter); background: color-mix(in srgb, var(--cream) 92%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--sand); }
+    .logo { text-decoration: none; display: flex; flex-direction: column; line-height: 1; direction: ltr; text-align: right; }
+    .logo b { font-family: var(--f-latin); font-style: italic; font-weight: 500; font-size: 1.55rem; }
+    .logo small { font-size: .62rem; letter-spacing: .32em; color: var(--choc-soft); margin-top: 4px; }
+    .back { font-size: .8rem; color: var(--choc-soft); text-decoration: none; display: block; margin-top: 2px; }
+    .pill { text-decoration: none; background: var(--olive); color: var(--cream); font-weight: 700; font-size: .95rem; padding: 10px 20px; border-radius: 999px; white-space: nowrap; }
+    .pill:hover { background: var(--olive-dark); }
+
+    /* hero */
+    .hero { padding: 36px 0 48px; text-align: center; background: radial-gradient(ellipse at 50% 0%, #f8e6e3 0%, var(--cream) 60%); }
+    .portrait { position: relative; width: min(78vw, 320px); aspect-ratio: 1; margin: 0 auto 30px; }
+    .portrait::before { content: ""; position: absolute; inset: -12px; border-radius: 50%; border: 1.5px solid var(--gold); }
+    .portrait img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .float { position: absolute; background: var(--white); border-radius: 16px; padding: 10px 14px; display: flex; align-items: center; gap: 10px; border: 1px solid var(--sand); box-shadow: 0 14px 30px -18px rgba(74,44,33,.5); }
+    .float b { display: block; font-family: var(--f-latin); font-weight: 600; font-size: 1.35rem; line-height: 1; }
+    .float small { font-size: .74rem; color: var(--choc-soft); }
+    .float .i { font-size: 1.2rem; color: var(--olive); }
+    .f1 { top: 2%; right: -8%; } .f2 { bottom: 10%; left: -8%; }
+    .chip { display: inline-flex; align-items: center; gap: 8px; border: 1.5px solid var(--olive); border-radius: 999px; padding: 6px 18px; font-weight: 700; font-size: .85rem; letter-spacing: .1em; }
+    .chip::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--pink-deep); }
+    .hero .eyebrow { margin-top: 22px; }
+    .hero h1 { font-family: var(--f-head); font-weight: 900; font-size: clamp(2.6rem, 11vw, 4rem); line-height: 1.08; color: var(--gold); }
+    .hero h1 em { font-style: italic; font-weight: 500; color: var(--pink-deep); }
+    .hero h1 small { display: block; font-weight: 500; font-size: .5em; color: var(--pink-deep); margin-top: 8px; }
+    .hero p { color: var(--choc-soft); max-width: 30em; margin: 18px auto 26px; }
+    .hero p b { color: var(--choc); }
+    .ctas { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .btn { display: inline-flex; justify-content: center; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; font-size: 1.08rem; padding: 15px 30px; border-radius: 999px; min-width: min(100%, 300px); transition: transform .3s var(--ease), background .3s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-olive { background: var(--olive); color: var(--cream); box-shadow: 0 14px 28px -16px rgba(61,71,44,.8); }
+    .btn-olive:hover { background: var(--olive-dark); }
+    .btn-ghost { border: 2px solid var(--choc); color: var(--choc); background: var(--white); }
+    .btn svg { width: 20px; height: 20px; }
+
+    /* marquee */
+    .marquee { overflow: hidden; border-block: 1px solid var(--sand); background: var(--beige); padding: 14px 0; }
+    .track { display: flex; gap: 40px; width: max-content; direction: ltr; animation: slide 30s linear infinite; }
+    .track span { font-family: var(--f-latin); font-style: italic; font-size: 1.5rem; color: var(--choc-soft); white-space: nowrap; }
+    .track b { color: var(--gold); font-weight: 400; }
+    @keyframes slide { to { transform: translateX(-50%); } }
+
+    /* before / after */
+    .ba { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 34px; }
+    .ba-card { position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 3 / 4.3; }
+    .ba-card img { width: 100%; height: 100%; object-fit: cover; }
+    .ba-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 45%, rgba(30,20,15,.8)); }
+    .ba-before { background: linear-gradient(160deg, #8d8279, #4a403a); }
+    .ba-before .ghost { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--f-latin); font-style: italic; font-size: 2.2rem; color: rgba(255,255,255,.25); }
+    .tag { position: absolute; top: 12px; left: 12px; z-index: 2; background: var(--gold); color: var(--cream); font-size: .78rem; font-weight: 700; padding: 3px 12px; border-radius: 999px; }
+    .tag.muted { background: rgba(255,255,255,.25); }
+    .ba-list { position: absolute; bottom: 12px; right: 12px; left: 12px; z-index: 2; list-style: none; padding: 0; margin: 0; color: #fff; font-size: .82rem; line-height: 1.5; }
+    .ba-list li::before { margin-left: 6px; font-weight: 700; }
+    .yes li::before { content: "✓"; color: #d9e6b8; }
+    .no li::before { content: "✕"; color: #f3cdd4; }
+    .quote { text-align: center; font-family: var(--f-head); font-style: italic; font-size: 1.2rem; color: var(--choc-soft); margin-top: 34px; }
+
+    /* weeks */
+    .weeks { display: grid; gap: 18px; margin-top: 34px; }
+    .week { position: relative; border-radius: 24px; overflow: hidden; min-height: 300px; color: #fff; display: flex; flex-direction: column; justify-content: flex-end; padding: 26px 24px; }
+    .week img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+    .week::before { content: ""; position: absolute; inset: 0; z-index: 1; background: var(--tint); opacity: .78; }
+    .week > *:not(img) { position: relative; z-index: 2; }
+    .w-meta { font-size: .85rem; font-weight: 700; letter-spacing: .14em; }
+    .week h3 { font-family: var(--f-head); font-weight: 900; font-size: 2.1rem; line-height: 1.15; margin-top: 4px; }
+    .w-en { font-family: var(--f-latin); font-style: italic; font-size: 1.3rem; color: #f3dca7; }
+    .week p { margin: 10px 0 14px; font-size: 1rem; }
+    .w-tags { border-top: 1px solid rgba(255,255,255,.4); padding-top: 10px; font-size: .85rem; opacity: .9; }
+
+    /* topics */
+    .green { background: var(--forest); color: var(--cream); }
+    .green .eyebrow { color: #d9b56a; }
+    .green .h2 { color: var(--cream); }
+    .green .lead { color: rgba(250,245,238,.82); }
+    .topics { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 30px; }
+    .topics span { border: 1px solid rgba(250,245,238,.45); border-radius: 999px; padding: 8px 16px; font-size: .95rem; background: rgba(255,255,255,.06); }
+
+    /* vision */
+    .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 460px; margin: 30px auto 0; }
+    .gallery img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 16px; }
+    .gallery img:last-child { grid-column: 1 / -1; width: 50%; margin: 0 auto; }
+
+    /* bonuses */
+    .bonuses { display: grid; gap: 14px; margin-top: 30px; }
+    .bonus { display: flex; align-items: center; gap: 16px; border: 1px solid rgba(250,245,238,.25); background: rgba(255,255,255,.07); border-radius: 18px; padding: 18px 20px; }
+    .bonus .ic { flex: 0 0 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; background: rgba(255,255,255,.12); border: 1px solid rgba(250,245,238,.3); font-size: 1.4rem; }
+    .bonus b { display: block; font-size: 1.1rem; }
+    .bonus span { font-size: .92rem; color: rgba(250,245,238,.75); }
+
+    /* price */
+    .price-card { background: var(--white); border: 1.5px solid var(--gold); border-radius: 28px; padding: 34px 24px; text-align: center; max-width: 460px; margin: 0 auto; }
+    .price-card .lbl { font-family: var(--f-latin); font-style: italic; font-size: 1.3rem; color: var(--pink-deep); }
+    .price { display: flex; justify-content: center; align-items: baseline; gap: 10px; margin: 6px 0; direction: ltr; }
+    .price b { font-family: var(--f-latin); font-weight: 600; font-size: 4.4rem; line-height: 1; }
+    .price b small { font-size: .45em; margin-right: 4px; }
+    .price s { color: var(--choc-soft); font-size: 1.3rem; }
+    .price-card .note { font-size: .9rem; color: var(--choc-soft); }
+    .badge-note { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; border: 1px solid var(--sand); border-radius: 999px; padding: 6px 16px; font-size: .88rem; background: var(--cream); }
+    .badge-note::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--olive); }
+    .price-card .ctas { margin-top: 24px; }
+
+    /* faq */
+    .faq { border-bottom: 1px solid var(--sand); }
+    .faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 22px 0; font-size: 1.12rem; font-weight: 600; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: "+"; color: var(--gold); font-size: 1.5rem; font-weight: 300; transition: transform .3s var(--ease); }
+    .faq[open] summary::after { transform: rotate(45deg); }
+    .faq p { margin: 0 0 22px; color: var(--choc-soft); }
+    .faqs { margin-top: 26px; }
+
+    /* footer */
+    .foot { background: var(--forest); color: var(--beige); text-align: center; padding: 44px var(--gutter) 90px; }
+    .foot .logo { align-items: center; text-align: center; }
+    .foot .logo small { color: rgba(241,231,218,.7); }
+    .foot a.home { display: inline-block; margin-top: 18px; color: var(--pink); }
+
+    /* floating whatsapp */
+    .wa { position: fixed; left: 18px; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 30; width: 58px; height: 58px; border-radius: 50%; background: #25d366; display: grid; place-items: center; box-shadow: 0 10px 24px -8px rgba(0,0,0,.4); }
+    .wa svg { width: 30px; height: 30px; color: #fff; }
+
+    .reveal { opacity: 1; }
+    @media (prefers-reduced-motion: reduce) { .track { animation: none; } * { transition: none !important; } }
+    @media (min-width: 760px) {
+      .weeks { grid-template-columns: 1fr 1fr; }
+      .bonuses { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="wa" viewBox="0 0 24 24"><path d="M12 2.5a9.4 9.4 0 0 0-8.1 14.2L2.6 21.4l4.8-1.3A9.4 9.4 0 1 0 12 2.5zm0 17.1a7.7 7.7 0 0 1-3.9-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A7.7 7.7 0 1 1 12 19.6zm4.3-5.8c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8.9-.3.2-.5.1a6.3 6.3 0 0 1-3.1-2.7c-.2-.4.2-.4.7-1.3a.4.4 0 0 0 0-.4l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3 2.7 2.7 0 0 0-.8 2 4.6 4.6 0 0 0 1 2.5 10.6 10.6 0 0 0 4.1 3.6c1.5.6 2.1.7 2.9.6a2.4 2.4 0 0 0 1.6-1.1 2 2 0 0 0 .1-1.1c0-.1-.2-.2-.4-.3z" fill="currentColor"/></symbol>
+  </svg>
+
+  <header class="top">
+    <a class="logo" href="index.html" aria-label="חזרה לאתר הראשי"><b>The Best Version</b><small>30 DAY CHALLENGE</small></a>
+    <a class="pill js-join" href="#join">אני נכנסת לאתגר</a>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="portrait">
+        <img src="assets/images/challenge/hero.jpg" alt="דניאל בלאיש">
+        <div class="float f1"><span><b dir="ltr">300+</b><small>בנות באתגר</small></span><span class="i">🌿</span></div>
+        <div class="float f2"><span><b>30</b><small>ימים לשינוי</small></span><span class="i" style="color:var(--choc)">✦</span></div>
+      </div>
+      <span class="chip">4 שבועות · נושא חדש כל יום</span>
+      <span class="eyebrow">אתגר 30 הימים שישנה אותך</span>
+      <h1>הגרסה <em>הכי טובה</em><br>של עצמך<small>בחודש אחד.</small></h1>
+      <p>30 ימים. 4 שבועות. נושא ממוקד בכל יום. <b>שינוי אמיתי בשלבים</b> — שיהפוך אותך לאישה העוצמתית שתמיד חלמת להיות.</p>
+      <div class="ctas">
+        <a class="btn btn-olive js-join" href="#join">אני רוצה להיכנס לאתגר <span aria-hidden="true">←</span></a>
+        <a class="btn btn-ghost" href="#how">איך זה עובד? <span aria-hidden="true">↓</span></a>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div class="track">
+    <span>Level Up</span><b>✦</b><span>Glow Up</span><b>✦</b><span>Future Self</span><b>✦</b><span>The Reset</span><b>✦</b>
+    <span>Level Up</span><b>✦</b><span>Glow Up</span><b>✦</b><span>Future Self</span><b>✦</b><span>The Reset</span><b>✦</b>
+  </div></div>
+
+  <!-- BEFORE / AFTER -->
+  <section>
+    <div class="wrap">
+      <span class="eyebrow">לפני · אחרי</span>
+      <h2 class="h2">אותה אישה. <em>החלטה אחרת.</em></h2>
+      <p class="lead">השינוי לא קורה בקסם — הוא נבנה יום אחרי יום. ככה זה נראה כשמחליטים להפסיק לחכות.</p>
+      <div class="ba">
+        <div class="ba-card"><img src="assets/images/challenge/after.jpg" alt="אחרי"><span class="tag">אחרי</span>
+          <ul class="ba-list yes"><li>אישה עצמאית ובטוחה</li><li>מתאמנת במשמעת</li><li>אוכלת בריא · סביבה תומכת</li></ul></div>
+        <div class="ba-card ba-before"><span class="ghost">before</span><span class="tag muted">לפני</span>
+          <ul class="ba-list no"><li>חוסר ביטחון עצמי</li><li>בלי הצבת גבולות</li><li>בלי משמעת עצמית</li></ul></div>
+      </div>
+      <p class="quote">״הדרך לגרסה הטובה ביותר שלך אינה מתגלה ביום אחד,<br>אלא נבנית מדי יום.״ — רובין שארמה</p>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" style="background:var(--beige);scroll-margin-top:70px">
+    <div class="wrap">
+      <span class="eyebrow">איך האתגר עובד</span>
+      <h2 class="h2">4 שבועות. <em>4 שלבים.</em> שינוי שלם.</h2>
+      <p class="lead">כדי להפוך לגרסה הכי טובה של עצמך צריכה לעבוד בשלבים. כל שבוע מתמקד בנושא אחר — ובונה את הבא אחריו.</p>
+      <div class="weeks">
+        <article class="week" style="--tint:linear-gradient(160deg,#7f8a66,#4f5a3b)"><img src="assets/images/challenge/week1.jpg" alt="" loading="lazy">
+          <span class="w-meta">🫧 שבוע 01 · ימים 1–7</span><h3>ניקיון וסדר</h3><span class="w-en">The Reset</span>
+          <p>מנקות את כל מה שמעכב אותך — סביבה, טלפון, ראש. משחררות את האנרגיה הישנה ומפנות מקום לחדש.</p>
+          <span class="w-tags">ראש נקי · סביבה תומכת · נקודת התחלה</span></article>
+        <article class="week" style="--tint:linear-gradient(160deg,#8a6a55,#4a2c21)"><img src="assets/images/challenge/week2.jpg" alt="" loading="lazy">
+          <span class="w-meta">⚡ שבוע 02 · ימים 8–14</span><h3>בניית שגרה</h3><span class="w-en">Level Up</span>
+          <p>בונות רף חדש — ערך עצמי גבוה יותר, הרגלים חזקים ושגרות זהב. הסוד להצלחה נמצא בשגרה היומית.</p>
+          <span class="w-tags">שגרת בוקר וערב · משמעת · עקביות</span></article>
+        <article class="week" style="--tint:linear-gradient(160deg,#6e7a58,#3f4a2e)"><img src="assets/images/challenge/week3.jpg" alt="" loading="lazy">
+          <span class="w-meta">✨ שבוע 03 · ימים 15–21</span><h3>גלואפ פנימי וחיצוני</h3><span class="w-en">Glow Up</span>
+          <p>טיפוח הגוף והנפש — בריאות, תנועה, שקט פנימי ואהבה עצמית. יופי מתחיל ברגע שאת מחליטה להיות עצמך.</p>
+          <span class="w-tags">טיפוח · תזונה · שקט פנימי · ביטחון</span></article>
+        <article class="week" style="--tint:linear-gradient(160deg,#8a6650,#3a2119)"><img src="assets/images/challenge/week4.jpg" alt="" loading="lazy">
+          <span class="w-meta">👑 שבוע 04 · ימים 22–30</span><h3>קלפים מנצחים</h3><span class="w-en">Future Self</span>
+          <p>השבוע המכריע — מהתנסות להטמעה. בונות חזון ברור של ה״אני העתידית״, מציבות גבולות, מחשלות חוסן.</p>
+          <span class="w-tags">חזון · גבולות · חוסן · שמירה לטווח ארוך</span></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOPICS -->
+  <section class="green">
+    <div class="wrap">
+      <span class="eyebrow">מה תעבדי עליו</span>
+      <h2 class="h2">נושא חדש <em>בכל יום</em></h2>
+      <p class="lead">כל יום מביא איתו פוקוס אחר — צעד אחד בכל פעם, עד שכל החתיכות מתחברות לתמונה אחת שלמה.</p>
+      <div class="topics">
+        <span>⏰ ניהול זמן</span><span>🏋️ בניית תוכנית אימונים</span><span>🌅 שגרת בוקר</span><span>🌙 שגרת ערב</span>
+        <span>🧍‍♀️ שפת גוף</span><span>🔴 הצבת גבולות</span><span>🪞 דימוי עצמי</span><span>👗 מציאת סטיילינג</span>
+        <span>🥗 תזונה נכונה</span><span>🧠 חוסן מנטלי</span><span>💧 חיבור לגוף</span><span>📓 כתיבה ועבודה עצמית</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISION -->
+  <section>
+    <div class="wrap">
+      <span class="eyebrow">הגרסה שמחכה לך</span>
+      <h2 class="h2">זאת לא <em>פנטזיה</em> — זו החלטה</h2>
+      <div class="gallery">
+        <img src="assets/images/challenge/g1.jpg" alt="">
+        <img src="assets/images/challenge/g2.jpg" alt="">
+        <img src="assets/images/challenge/g3.jpg" alt="">
+      </div>
+    </div>
+  </section>
+
+  <!-- BONUSES -->
+  <section class="green">
+    <div class="wrap">
+      <span class="eyebrow">בונוסים</span>
+      <h2 class="h2">מחכות לך <em>הפתעות שוות</em></h2>
+      <p class="lead">מעבר למשימות היומיות — שכבה שלמה של תוכן שמלווה ומעצימה אותך כל הדרך.</p>
+      <div class="bonuses">
+        <div class="bonus"><span class="ic">📲</span><span><b>ליווי יומי צמוד</b><span>אני איתך בכל יום, גם בקשים.</span></span></div>
+        <div class="bonus"><span class="ic">🥗</span><span><b>רעיונות לארוחות</b><span>נשנושים בריאים והשראה לתזונה.</span></span></div>
+        <div class="bonus"><span class="ic">🎧</span><span><b>פודקאסטים נבחרים</b><span>להאזנה בדרך, באימון או בבוקר.</span></span></div>
+        <div class="bonus"><span class="ic">🎬</span><span><b>סרטוני השראה</b><span>שמכניסים אותך למוד הנכון.</span></span></div>
+        <div class="bonus"><span class="ic">📚</span><span><b>רשימות ספרים</b><span>הכותרים שישנו לך את הראש.</span></span></div>
+        <div class="bonus"><span class="ic">🍿</span><span><b>רשימות סרטים</b><span>צפייה מעצימה בזמן הפנוי.</span></span></div>
+        <div class="bonus"><span class="ic">🎵</span><span><b>פלייליסטים</b><span>הסאונדטרק של הגרסה החדשה שלך.</span></span></div>
+        <div class="bonus"><span class="ic">🎁</span><span><b>הפתעות לאורך הדרך</b><span>בונוסים שמשאירים אותך מחויבת.</span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICE -->
+  <section id="join" style="scroll-margin-top:70px">
+    <div class="wrap">
+      <div class="price-card">
+        <span class="lbl">מחיר חד פעמי מיוחד</span>
+        <div class="price"><b>149<small>₪</small></b><s>249₪</s></div>
+        <span class="note">תשלום חד פעמי · גישה מיידית לכל 4 השבועות · ללא מינוי</span><br>
+        <span class="badge-note">פחות ממחיר זוג ג׳ינס — השקעה אמיתית בעצמך</span>
+        <div class="ctas">
+          <a class="btn btn-olive js-wa" href="#"><svg aria-hidden="true"><use href="#wa"/></svg>אני רוצה להצטרף</a>
+          <span style="font-size:.85rem;color:var(--choc-soft)">נפתחת שיחת ווטסאפ איתי עם הודעה מוכנה</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="background:var(--beige)">
+    <div class="wrap">
+      <span class="eyebrow">שאלות נפוצות</span>
+      <h2 class="h2">יש לך <em>שאלות?</em></h2>
+      <div class="faqs">
+        <details class="faq"><summary>כמה זמן זה לוקח ביום?</summary><p>[לאישור שלך] בין 10 ל־20 דקות ביום. כל משימה קצרה וממוקדת, כך שאפשר לשלב אותה גם ביום הכי עמוס.</p></details>
+        <details class="faq"><summary>מה ההבדל בין 4 השבועות?</summary><p>כל שבוע מתמקד בשלב אחר: שבוע 1 ניקיון וסדר, שבוע 2 בניית שגרה, שבוע 3 גלואפ פנימי וחיצוני, שבוע 4 קלפים מנצחים והטמעה לטווח ארוך. כל שבוע בונה על הקודם.</p></details>
+        <details class="faq"><summary>מה קורה אחרי שמשלימת?</summary><p>[לאישור שלך] הגישה לחומרים נשארת שלך, כך שאפשר לחזור לכל יום ולכל שבוע מתי שתרצי — ולהמשיך ליישם את ההרגלים שבנית.</p></details>
+        <details class="faq"><summary>אני ממש עסוקה — זה מתאים לי?</summary><p>בדיוק בשבילך. המשימות קצרות ומעשיות ואפשר לעשות אותן בכל מקום — בבוקר, בהפסקת צהריים או לפני השינה.</p></details>
+        <details class="faq"><summary>מתי מתחיל האתגר?</summary><p>[לאישור שלך] מיד אחרי ההצטרפות מקבלים גישה, ואפשר להתחיל באותו יום.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <a class="logo" href="index.html"><b>The Best Version</b><small>30 DAY CHALLENGE</small></a>
+    <br><a class="home" href="index.html">← חזרה ל-The Full Wellness Package</a>
+  </footer>
+
+  <a class="wa js-wa" href="#" aria-label="דברי איתי בווטסאפ"><svg><use href="#wa"/></svg></a>
+
+  <script>
+    // WhatsApp join link with the prefilled message
+    var WA = "972543050516";
+    var TEXT = "היי דניאל, אני רוצה להצטרף לקורס 'להפוך לגרסה הכי טובה של עצמי בחודש אחד'";
+    var url = "https://wa.me/" + WA + "?text=" + encodeURIComponent(TEXT);
+    document.querySelectorAll(".js-wa").forEach(function (a) { a.href = url; a.target = "_blank"; a.rel = "noopener"; });
+  </script>
+</body>
+</html>
