@@ -42,7 +42,7 @@ function courseCard(c) {
         ${c.note ? `<p class="course-note">${esc(c.note)}</p>` : ""}
         <div class="course-ctas">
           ${join ? `<a class="btn btn-pink" href="${esc(join)}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg>אני רוצה להצטרף</a>` : ""}
-          ${c.detailsUrl ? `<a class="btn btn-ghost-pink" href="${esc(c.detailsUrl)}" target="_blank" rel="noopener">לפרטים נוספים ${ARROW}</a>` : ""}
+          ${c.detailsUrl ? `<a class="btn btn-ghost-pink" href="${esc(c.detailsUrl)}"${/^https?:/.test(c.detailsUrl) ? ' target="_blank" rel="noopener"' : ""}>לפרטים נוספים ${ARROW}</a>` : ""}
         </div>
         ${faq ? `<div class="faqs"><p class="block-h">שאלות נפוצות</p>${faq}</div>` : ""}
       </div>
@@ -145,7 +145,7 @@ if (podcastLive) {
       <span class="lr-text"><b>${esc(r.title)}</b><small>${esc(sub)}</small></span>
       <i aria-hidden="true">${live ? "←" : "בקרוב"}</i></a>`;
   });
-  const courseRows = PAID_COURSES.map((c) => `<a class="link-row" href="${esc(c.detailsUrl || c.url || "#course")}" target="_blank" rel="noopener">
+  const courseRows = PAID_COURSES.map((c) => `<a class="link-row" href="${esc(c.detailsUrl || c.url || "#course")}">
       <span class="lr-ico ico-star" aria-hidden="true">✦</span>
       <span class="lr-text"><b>${esc(c.title)}</b><small>${esc(c.badge || "אתגר")}${c.price ? ` · ${esc(c.price)} ₪` : ""}</small></span>
       <i aria-hidden="true">←</i></a>`);

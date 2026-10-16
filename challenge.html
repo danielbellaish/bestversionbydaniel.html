@@ -83,15 +83,14 @@
     @keyframes slide { to { transform: translateX(-50%); } }
 
     /* before / after */
-    .ba { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 34px; }
-    .ba-card { position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 3 / 4.3; }
-    .ba-card img { width: 100%; height: 100%; object-fit: cover; }
-    .ba-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 45%, rgba(30,20,15,.8)); }
-    .ba-before { background: linear-gradient(160deg, #8d8279, #4a403a); }
-    .ba-before .ghost { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--f-latin); font-style: italic; font-size: 2.2rem; color: rgba(255,255,255,.25); }
-    .tag { position: absolute; top: 12px; left: 12px; z-index: 2; background: var(--gold); color: var(--cream); font-size: .78rem; font-weight: 700; padding: 3px 12px; border-radius: 999px; }
-    .tag.muted { background: rgba(255,255,255,.25); }
-    .ba-list { position: absolute; bottom: 12px; right: 12px; left: 12px; z-index: 2; list-style: none; padding: 0; margin: 0; color: #fff; font-size: .82rem; line-height: 1.5; }
+    .ba { display: grid; gap: 16px; margin-top: 34px; }
+    .ba-card { position: relative; border-radius: 22px; overflow: hidden; }
+    .pics { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+    .pics img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+    .ba-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 55%, rgba(30,20,15,.82)); pointer-events: none; }
+    .tag { position: absolute; top: 12px; right: 12px; z-index: 2; background: var(--gold); color: var(--cream); font-size: .78rem; font-weight: 700; padding: 3px 12px; border-radius: 999px; }
+    .tag.muted { background: rgba(74,44,33,.75); }
+    .ba-list { position: absolute; bottom: 14px; right: 16px; left: 16px; z-index: 2; list-style: none; padding: 0; margin: 0; color: #fff; font-size: .95rem; line-height: 1.6; }
     .ba-list li::before { margin-left: 6px; font-weight: 700; }
     .yes li::before { content: "✓"; color: #d9e6b8; }
     .no li::before { content: "✕"; color: #f3cdd4; }
@@ -209,9 +208,9 @@
       <h2 class="h2">אותה אישה. <em>החלטה אחרת.</em></h2>
       <p class="lead">השינוי לא קורה בקסם — הוא נבנה יום אחרי יום. ככה זה נראה כשמחליטים להפסיק לחכות.</p>
       <div class="ba">
-        <div class="ba-card"><img src="assets/images/challenge/after.jpg" alt="אחרי"><span class="tag">אחרי</span>
+        <div class="ba-card"><div class="pics"><img src="assets/images/challenge/after1.jpg" alt="אחרי — בחוף"><img src="assets/images/challenge/after2.jpg" alt="אחרי — בחדר הכושר"></div><span class="tag">אחרי</span>
           <ul class="ba-list yes"><li>אישה עצמאית ובטוחה</li><li>מתאמנת במשמעת</li><li>אוכלת בריא · סביבה תומכת</li></ul></div>
-        <div class="ba-card ba-before"><span class="ghost">before</span><span class="tag muted">לפני</span>
+        <div class="ba-card"><div class="pics"><img src="assets/images/challenge/before1.jpg" alt="לפני"><img src="assets/images/challenge/before2.jpg" alt="לפני"></div><span class="tag muted">לפני</span>
           <ul class="ba-list no"><li>חוסר ביטחון עצמי</li><li>בלי הצבת גבולות</li><li>בלי משמעת עצמית</li></ul></div>
       </div>
       <p class="quote">״הדרך לגרסה הטובה ביותר שלך אינה מתגלה ביום אחד,<br>אלא נבנית מדי יום.״ — רובין שארמה</p>
@@ -313,11 +312,11 @@
       <span class="eyebrow">שאלות נפוצות</span>
       <h2 class="h2">יש לך <em>שאלות?</em></h2>
       <div class="faqs">
-        <details class="faq"><summary>כמה זמן זה לוקח ביום?</summary><p>[לאישור שלך] בין 10 ל־20 דקות ביום. כל משימה קצרה וממוקדת, כך שאפשר לשלב אותה גם ביום הכי עמוס.</p></details>
+        <details class="faq"><summary>כמה זמן זה לוקח ביום?</summary><p>בין 10 ל־20 דקות ביום. כל משימה קצרה וממוקדת, כך שאפשר לשלב אותה גם ביום הכי עמוס.</p></details>
         <details class="faq"><summary>מה ההבדל בין 4 השבועות?</summary><p>כל שבוע מתמקד בשלב אחר: שבוע 1 ניקיון וסדר, שבוע 2 בניית שגרה, שבוע 3 גלואפ פנימי וחיצוני, שבוע 4 קלפים מנצחים והטמעה לטווח ארוך. כל שבוע בונה על הקודם.</p></details>
-        <details class="faq"><summary>מה קורה אחרי שמשלימת?</summary><p>[לאישור שלך] הגישה לחומרים נשארת שלך, כך שאפשר לחזור לכל יום ולכל שבוע מתי שתרצי — ולהמשיך ליישם את ההרגלים שבנית.</p></details>
+        <details class="faq"><summary>מה קורה אחרי שמשלימת?</summary><p>הגישה לחומרים נשארת שלך, כך שאפשר לחזור לכל יום ולכל שבוע מתי שתרצי — ולהמשיך ליישם את ההרגלים שבנית.</p></details>
         <details class="faq"><summary>אני ממש עסוקה — זה מתאים לי?</summary><p>בדיוק בשבילך. המשימות קצרות ומעשיות ואפשר לעשות אותן בכל מקום — בבוקר, בהפסקת צהריים או לפני השינה.</p></details>
-        <details class="faq"><summary>מתי מתחיל האתגר?</summary><p>[לאישור שלך] מיד אחרי ההצטרפות מקבלים גישה, ואפשר להתחיל באותו יום.</p></details>
+        <details class="faq"><summary>מתי מתחיל האתגר?</summary><p>מיד אחרי ההצטרפות מקבלים גישה, ואפשר להתחיל באותו יום.</p></details>
       </div>
     </div>
   </section>

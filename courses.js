@@ -47,7 +47,7 @@ const PAID_COURSES = [
     note: "תשלום חד פעמי · גישה מיידית לכל 4 השבועות · ללא מינוי",
     price: 149,
     oldPrice: 249,
-    detailsUrl: "https://bestversionbydaniel.tiiny.site",
+    detailsUrl: "challenge.html",
     whatsappText: "היי דניאל, אני רוצה להצטרף לקורס 'להפוך לגרסה הכי טובה של עצמי בחודש אחד'",
   },
 ];
