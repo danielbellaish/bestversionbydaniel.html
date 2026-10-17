@@ -21,18 +21,21 @@ function courseCard(c) {
         <b class="wk-title">${esc(w.he)} <em>${esc(w.en)}</em></b><span class="wk-arrow" aria-hidden="true"></span></summary>
       <div class="wk-body"><span>${esc(w.text)}</span>
       ${(w.tags || []).length ? `<small class="wk-tags">${w.tags.map(esc).join(" · ")}</small>` : ""}</div></details></li>`).join("");
+  const features = (c.features || []).map((f) => `<li>${esc(f)}</li>`).join("");
   const faq = (c.faq || []).map((f) => `<details class="faq"><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("");
   return `
-    <article class="course" data-reveal>
-      <div class="course-media">
-        <div class="frame">${c.image ? `<img src="${esc(c.image)}" alt="${esc(c.title)}" loading="lazy">` : ""}
+    <article class="course${c.image ? "" : " no-media"}" data-reveal>
+      ${c.image ? `<div class="course-media">
+        <div class="frame"><img src="${esc(c.image)}" alt="${esc(c.title)}" loading="lazy">
           <div class="stamp" aria-hidden="true"><span><b>30</b><small>DAYS</small></span></div></div>
-      </div>
+      </div>` : ""}
       <div class="course-body">
         ${c.badge ? `<span class="badge">${esc(c.badge)}</span>` : ""}
-        <h3>${esc(c.title)}</h3>
+        <h3${/^[A-Za-z]/.test(c.title) ? ' class="en-title"' : ""}>${esc(c.title)}</h3>
+        ${c.subtitle ? `<p class="course-sub">${esc(c.subtitle)}</p>` : ""}
         ${c.description ? `<p class="desc">${esc(c.description)}</p>` : ""}
         ${stats ? `<ul class="stats">${stats}</ul>` : ""}
+        ${features ? `<div class="block"><p class="block-h">${esc(c.featuresTitle || "מה בפנים")}</p><ul class="bonuses">${features}</ul></div>` : ""}
         ${weeks ? `<div class="block"><p class="block-h">המסע — 4 שבועות, 4 שלבים · לחצי על שבוע לפירוט</p><ol class="weeks">${weeks}</ol></div>` : ""}
         <div class="price-row">
           <span class="price">${esc(c.price)}<small>₪</small></span>
@@ -41,7 +44,7 @@ function courseCard(c) {
         </div>
         ${c.note ? `<p class="course-note">${esc(c.note)}</p>` : ""}
         <div class="course-ctas">
-          ${join ? `<a class="btn btn-pink" href="${esc(join)}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg>אני רוצה להצטרף</a>` : ""}
+          ${join ? `<a class="btn btn-pink" href="${esc(join)}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg>${esc(c.ctaText || "אני רוצה להצטרף")}</a>` : ""}
           ${c.detailsUrl ? `<a class="btn btn-ghost-pink" href="${esc(c.detailsUrl)}"${/^https?:/.test(c.detailsUrl) ? ' target="_blank" rel="noopener"' : ""}>לפרטים נוספים ${ARROW}</a>` : ""}
         </div>
         ${faq ? `<div class="faqs"><p class="block-h">שאלות נפוצות</p>${faq}</div>` : ""}
@@ -145,7 +148,7 @@ if (podcastLive) {
       <span class="lr-text"><b>${esc(r.title)}</b><small>${esc(sub)}</small></span>
       <i aria-hidden="true">${live ? "←" : "בקרוב"}</i></a>`;
   });
-  const courseRows = PAID_COURSES.map((c) => `<a class="link-row" href="${esc(c.detailsUrl || c.url || "#course")}">
+  const courseRows = PAID_COURSES.map((c) => `<a class="link-row" href="${esc(c.detailsUrl || whatsappLink(c.whatsappText) || "#course")}"${!c.detailsUrl && c.whatsappText ? ' target="_blank" rel="noopener"' : ""}>
       <span class="lr-ico ico-star" aria-hidden="true">✦</span>
       <span class="lr-text"><b>${esc(c.title)}</b><small>${esc(c.badge || "אתגר")}${c.price ? ` · ${esc(c.price)} ₪` : ""}</small></span>
       <i aria-hidden="true">←</i></a>`);

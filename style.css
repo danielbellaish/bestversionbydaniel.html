@@ -606,3 +606,9 @@ html.is-loading .hero *, html.is-loading .topbar { animation-play-state: paused 
   .quote-arch { width: min(70%, 260px); }
   .quote-text .quote-mark { text-align: center; }
 }
+
+/* courses without a photo: full-width card */
+.course.no-media { grid-template-columns: 1fr; }
+.course.no-media .course-body { width: 100%; max-width: 860px; margin: 0 auto; }
+.course h3.en-title { font-family: var(--f-latin); font-weight: 500; letter-spacing: .01em; }
+.course-sub { margin: -6px 0 16px; font-family: var(--f-head); font-size: 1.1rem; color: var(--cream); }
