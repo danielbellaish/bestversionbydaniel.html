@@ -6,7 +6,7 @@
    כשהפודקאסט עולה: מדביקים את הקישורים בין המרכאות, והכפתורים יידלקו לבד. */
 const LINKS = {
   instagram: "https://instagram.com/daniel_bellaish",
-  tiktok: "https://www.tiktok.com/@daniel_bellaish",
+  tiktok: "https://www.tiktok.com/@daniel.bellaish?_r=1&_t=ZS-9AcqBiKzdSO",
   spotify: "",        // קישור לפודקאסט בספוטיפיי
   applePodcasts: "",  // קישור לפודקאסט באפל פודקאסט
   whatsapp: "972543050516", // מספר הווטסאפ (בלי + ובלי מקפים)

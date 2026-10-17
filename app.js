@@ -136,7 +136,7 @@ if (podcastLive) {
 
   const rows = [
     { key: "instagram", icon: "#i-instagram", title: "Instagram", sub: "@daniel_bellaish" },
-    { key: "tiktok", icon: "#i-tiktok", title: "TikTok", sub: "@daniel_bellaish" },
+    { key: "tiktok", icon: "#i-tiktok", title: "TikTok", sub: "@daniel.bellaish" },
     { key: "spotify", icon: "#i-spotify", title: "הפודקאסט ב־Spotify", sub: "בקרוב" },
     { key: "applePodcasts", icon: "#i-apple-podcasts", title: "הפודקאסט ב־Apple Podcasts", sub: "בקרוב" },
   ].map((r) => {
